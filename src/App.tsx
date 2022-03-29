@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import NavbarScroller from './components/NavbarScroller';
+import FrontPage from './components/FrontPage';
+
+const Home = styled.div`
+  background: #fefaf6;
+  height: 100%;
+`;
+
+const navigation = {
+  links: [
+    { name: "Home", to: "/"},
+    { name: "Blogs", to: "/healthcare"},
+    { name: "About Me", to: "/about" },
+    { name: "Contact", to: "/contact" },
+  ]
+}
 
 function App() {
+
+  const {links} = navigation
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Home>
+      <NavbarScroller links={links}/>
+      <FrontPage />
+    </Home>
   );
 }
 
