@@ -5,6 +5,8 @@ const Navbar = styled.nav`
   font-family: 'Nunito', sans-serif;
   background: #fefaf6;
   display: flex;
+  position: sticky;
+  top: 0;
   align-items: center;
   justify-content: space-between;
   a { color: #232320; text-decoration: none; }`;
@@ -35,9 +37,8 @@ const Li = styled.li`
   white-space: nowrap;`;
 
 
-const NavbarScroller = (props: {
-    links: Array<{name: string; to: string}>
-}) => {
+const NavbarScroller = ( props: {links: Array<{name: string; to: string}>} ) => {
+  
     const {links} = props;
     const NavLinks: any = () => links.map((link: {name: string, to: string }) => 
         <Li className='navbar' key={link.name}><a href={link.to}>{link.name}</a></Li>)
@@ -45,7 +46,7 @@ const NavbarScroller = (props: {
     return (
         <Navbar>
             <Ul>
-                <NavLinks />
+              <NavLinks />
             </Ul>
         </Navbar>
     )
