@@ -34,7 +34,6 @@ const Ul = styled.ul`
     flex-direction: row;
     -webkit-overflow-scrolling: touch;
     overflow: auto;
-
 `;
 
 const Li = styled.li`
@@ -61,7 +60,7 @@ const BlogList = ( props: {blogs: Array<{name: string; to: string; img: string}>
 
     const {blogs} = props
     const BlogList: any = () => blogs.map((link: {name: string, to: string, img:string }) => 
-        <Li className='shadow' key={link.name}>
+        <Li className='shadow point' key={link.name}>
             <BlogBox className='small rounded link' href={link.to}>
                 <img src={require('../assets/' + link.img)} alt= {link.img + ' image'}></img>
                 <p>{link.name}</p>

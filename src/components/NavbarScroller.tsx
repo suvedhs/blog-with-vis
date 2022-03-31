@@ -53,20 +53,29 @@ const Link = styled.a`
   padding: 25px 35px;
   text-decoration: none;
   white-space: nowrap;
+
+  i {
+    transition: transform ease 0.5s, -webkit-transform ease 0.5s;
+  }
+
+  &:hover i {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
 `;
 
 
-const NavbarScroller = ( props: {links: Array<{name: string; to: string, icon: string}>} ) => {
+const NavbarScroller = ( props: {links: Array<{name: string; to: string}>, blogs: Array<{name: string; to: string, img: string}>} ) => {
   
     const {links} = props;
-    const NavLinks: any = () => links.map((link: {name: string, to: string, icon:string }) => 
+    const NavLinks: any = () => links.map((link: {name: string, to: string }) => 
         <Li key={link.name}>
           {makeLink(link)}
         </Li>
       )
 
-    function makeLink(link: {name: string; to: string, icon: string}) {
-      if(link.icon === "arrow down") {
+    function makeLink(link: {name: string; to: string}) {
+      if(link.name === "Blogs") {
         return (
           <Link className='navbar shadow' href={link.to}>{link.name} <i className="arrow down"></i></Link>
         )

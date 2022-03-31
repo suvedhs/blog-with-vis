@@ -1,6 +1,6 @@
 @import-normalize;
-
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,300;0,400;0,600;1,400&family=Nunito&display=swap');
+@nest;
 
 html {
     height: 100%;
@@ -78,6 +78,10 @@ body {
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+.point {
+  cursor: pointer;
 }
 
 /*

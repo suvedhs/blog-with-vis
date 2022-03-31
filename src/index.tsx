@@ -13,9 +13,9 @@ import Healthcare from './components/blogs/Healthcare';
 
 const navigation = {
   links: [
-    { name: "Blogs", to: "#blogs", icon: "arrow down"},
-    { name: "About Me", to: "/about", icon: ""},
-    { name: "Contact", to: "#contact", icon: ""},
+    { name: "Blogs", to: "/#blogs"},
+    { name: "About Me", to: "/about"},
+    { name: "Contact", to: "#contact"},
   ],
   blogs: [
     { name: "Healthcare", to: "/healthcare", img: "healthcare.png" },
@@ -32,7 +32,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Container className='bg'>
       <Router>
-        <NavbarScroller links={navigation.links} />
+        <NavbarScroller links={navigation.links} blogs={navigation.blogs}/>
         <Routes>
           <Route path="/" element={<App blogs={navigation.blogs}/>} />
           <Route path="/about" element={<About />} />
