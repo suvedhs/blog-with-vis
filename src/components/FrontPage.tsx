@@ -7,21 +7,25 @@ const Bold = styled.span`
 `;
 
 const Text = styled.div`
+    padding: 5%;
+    width: 50%;
     display:flex;
     flex-direction: column;
-    padding: 30px;
-    width: 60%;
-    align-items: stretch;
+    align-content: center;
+    justify-content: center;
+
+    div.big {
+        font-size: 500%;
+    }
 `
 
 const Pic = styled.img`
     display:flex;
-    padding: 2%;
+    padding: 5%;
 `
 
 const Intro = styled.div`
   background: #f0f0d6;
-  height: 40%;
   width: 90%;
   display: flex;
   font-family: 'Bitter', serif;
@@ -32,10 +36,11 @@ const Intro = styled.div`
 
 const FrontPage = (props: any) => {
     return (
-        <Intro>
+        <Intro className='rounded'>
             <Text>
-                <div className='big'>Hi. I'm Suvedh. A Leftist.</div>
-                <div className='small'>I'm also a <a className='link' href='https://github.com/suvedhs'>full-stack developer</a> and <a className='link' href='https://www.twitter.com/groovysuvy'>Funny Guy™</a> with a newfound passion for <Bold>data visualization.</Bold> I blog about topics in American politics using analysis from publicly available data.</div>
+                <div className='big'>Hi. I'm Suvedh.</div>
+                <div className='big'>A Leftist.</div>
+                <div className='small'>I'm also a <a className='link' href='https://github.com/suvedhs'>full-stack developer</a> and <a className='link' href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Funny Guy™</a> with a newfound passion for <Bold>data visualization.</Bold> I blog about topics in American politics using analysis from publicly available data.</div>
             </Text>
             <Pic src={require('../assets/genericbargraph.png')} alt='generic bar graph'></Pic>
         </Intro>

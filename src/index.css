@@ -18,6 +18,7 @@ body {
 .big {
   font-size: 3.5em;
   padding: 5px;
+  font-weight: 300;
   font-family: 'Bitter', serif;
 }
 
@@ -25,8 +26,13 @@ body {
   font-size: 20px;
   padding: 5px;
   font-family: 'Bitter', serif;
+  line-height: 2em;
 }
 
 .link {
-    color: black;
+  color: black;
+}
+
+.rounded {
+  border-radius: 25px;
 }
