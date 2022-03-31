@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import '../index.css'
 
-const Bold = styled.span`
-  font-size: 21px;
-  font-weight: 600;
+const Italics = styled.span`
+  font-style: italic;
+  font-weight: 400;
 `;
 
 const Text = styled.div`
@@ -22,16 +22,18 @@ const Text = styled.div`
 const Pic = styled.img`
     display:flex;
     padding: 5%;
+    filter: invert(57%) sepia(82%) saturate(2152%) hue-rotate(209deg) brightness(98%) contrast(106%);
+    width: 30%;
+    height: 100%;
 `
 
 const Intro = styled.div`
-  background: #f0f0d6;
   width: 90%;
   display: flex;
   font-family: 'Bitter', serif;
   margin: 0 5%;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 `
 
 const FrontPage = (props: any) => {
@@ -40,7 +42,7 @@ const FrontPage = (props: any) => {
             <Text>
                 <div className='big'>Hi. I'm Suvedh.</div>
                 <div className='big'>A Leftist.</div>
-                <div className='small'>I'm also a <a className='link' href='https://github.com/suvedhs'>full-stack developer</a> and <a className='link' href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Funny Guy™</a> with a newfound passion for <Bold>data visualization.</Bold> I blog about topics in American politics using analysis from publicly available data.</div>
+                <div className='small'>I'm also a <a className='link' href='https://github.com/suvedhs'>full-stack developer</a> and <a className='link' href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Funny Guy™</a> with a newfound passion for <Italics>data visualization</Italics>. I blog about topics in American politics using analysis from publicly available data.</div>
             </Text>
             <Pic src={require('../assets/genericbargraph.png')} alt='generic bar graph'></Pic>
         </Intro>

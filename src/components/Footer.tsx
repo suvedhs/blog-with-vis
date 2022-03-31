@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import '../index.css'
 
 const FooterContainer = styled.footer`
-  background: #fefaf6;
   text-align: center;
   padding-top: 10%;
   padding-bottom: 10%;
@@ -12,7 +11,7 @@ const FooterContainer = styled.footer`
 
 function Footer() {
   return (
-      <FooterContainer>
+      <FooterContainer id='contact'>
         <div className='big'>
             I don't know everything.
         </div>

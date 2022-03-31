@@ -1,9 +1,9 @@
 import React from "react";
 
-function Contact() {
+function Healthcare() {
   return (
-    <div className="contact">
-      <div >
+    <div className="about">
+      <div>
         <div>
           <div>
             <img
@@ -12,7 +12,7 @@ function Contact() {
             />
           </div>
           <div>
-            <h1>Contact</h1>
+            <h1>About</h1>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -26,4 +26,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default Healthcare;

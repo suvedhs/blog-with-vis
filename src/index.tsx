@@ -9,13 +9,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavbarScroller from './components/NavbarScroller';
 import Footer from './components/Footer';
 import About from './components/About';
-import Contact from './components/Contact';
+import Healthcare from './components/blogs/Healthcare';
 
 const navigation = {
   links: [
-    { name: "Blogs", to: "/"},
-    { name: "About Me", to: "/about" },
-    { name: "Contact", to: "/contact" },
+    { name: "Blogs", to: "#blogs", icon: "arrow down"},
+    { name: "About Me", to: "/about", icon: ""},
+    { name: "Contact", to: "#contact", icon: ""},
   ],
   blogs: [
     { name: "Healthcare", to: "/healthcare", img: "healthcare.png" },
@@ -24,20 +24,19 @@ const navigation = {
 }
 
 const Container = styled.div`
-  background: #fefaf6;
   position: relative;
 `;
 
 ReactDOM.render(
   
   <React.StrictMode>
-    <Container>
+    <Container className='bg'>
       <Router>
         <NavbarScroller links={navigation.links} />
         <Routes>
           <Route path="/" element={<App blogs={navigation.blogs}/>} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/healthcare" element={<Healthcare />} />
         </Routes>
         <Footer />
       </Router>
