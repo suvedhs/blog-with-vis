@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import '../index.css';
+import BlogList from './BlogList';
 
 const Navbar = styled.nav`
   font-family: 'Nunito', sans-serif;
@@ -62,22 +63,55 @@ const Link = styled.a`
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
   }
+
+  &:hover ul {
+    display: flex;
+  }
+`;
+
+const BlogListContainer = styled.div`
+
+  position: relative;
+
+  ul {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    padding: 0;
+    z-index: 100;
+  }
+
+  &:hover ul {
+    display: flex;
+  }
+`
+
+const DropdownLinks = styled.ul`
 `;
 
 
 const NavbarScroller = ( props: {links: Array<{name: string; to: string}>, blogs: Array<{name: string; to: string, img: string}>} ) => {
   
-    const {links} = props;
+    const {links, blogs} = props;
     const NavLinks: any = () => links.map((link: {name: string, to: string }) => 
         <Li key={link.name}>
           {makeLink(link)}
         </Li>
       )
+    const DropdownLinks: any = () => blogs.map((link: {name: string, to: string}) =>
+        <Link className='navbar shadow dropdown-item' href={link.to}>{link.name}</Link>
+    )
 
     function makeLink(link: {name: string; to: string}) {
       if(link.name === "Blogs") {
         return (
-          <Link className='navbar shadow' href={link.to}>{link.name} <i className="arrow down"></i></Link>
+          <BlogListContainer>
+            <Link className='navbar shadow blog' href={link.to}>{link.name} <i className="arrow down"></i>
+            </Link>
+            <ul>
+              <DropdownLinks />
+            </ul>
+          </BlogListContainer>
         )
       }
       else {
