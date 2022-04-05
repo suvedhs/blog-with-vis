@@ -1,17 +1,18 @@
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 import '../index.css'
 
-const Container=styled.div`
+const Container = styled.div`
     margin: 5%;
 
-`;
+`
 
 const Head = styled.h2`
     content-align: center;
     padding: 20px;
 `
 
-const BlogBox=styled.a`
+const BlogBox = styled.a`
     padding: 30px;
     display:flex;
     flex-direction: column;
@@ -34,7 +35,7 @@ const Ul = styled.ul`
     flex-direction: row;
     -webkit-overflow-scrolling: touch;
     overflow: auto;
-`;
+`
 
 const Li = styled.li`
   -webkit-box-align: center;
@@ -54,27 +55,26 @@ const Li = styled.li`
   padding: 25px 35px;
   text-decoration: none;
   white-space: nowrap;
-  `;
+  `
 
-const BlogList = ( props: {blogs: Array<{name: string; to: string; img: string}>} ) => {
+const BlogList = (props: {blogs: {name: string; to: string; img: string}[] }) => {
+  const { blogs } = props
+  const Blogs: any = () => blogs.map((link: {name: string, to: string, img:string }) =>
+    <Li className='shadow point' key={link.name}>
+        <BlogBox className='small rounded link' href={link.to}>
+            <img src={require('../assets/' + link.img)} alt= {link.img + ' image'}></img>
+            <p>{link.name}</p>
+        </BlogBox>
+    </Li>)
 
-    const {blogs} = props
-    const BlogList: any = () => blogs.map((link: {name: string, to: string, img:string }) => 
-        <Li className='shadow point' key={link.name}>
-            <BlogBox className='small rounded link' href={link.to}>
-                <img src={require('../assets/' + link.img)} alt= {link.img + ' image'}></img>
-                <p>{link.name}</p>
-            </BlogBox>
-        </Li>)
-
-    return (
-        <Container id='blogs'>
-            <Head className='big'>My posts:</Head>
-            <Ul>
-                <BlogList />
-            </Ul>
-        </Container>
-    )
+  return (
+    <Container id='blogs'>
+        <Head className='big'>My posts:</Head>
+        <Ul>
+            <Blogs />
+        </Ul>
+    </Container>
+  )
 }
 
 export default BlogList

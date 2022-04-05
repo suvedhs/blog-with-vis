@@ -84,6 +84,15 @@ body {
   cursor: pointer;
 }
 
+.progress-bar {
+  background: rgb(136,136,255);
+  background: -moz-linear-gradient(90deg, rgba(136,136,255,1) 0%, rgba(252,122,91,1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(136,136,255,1) 0%, rgba(252,122,91,1) 100%);
+  background: linear-gradient(90deg, rgba(136,136,255,1) 0%, rgba(252,122,91,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8888ff",endColorstr="#fc7a5b",GradientType=1);
+  height: 10px;
+  width: 100%;
+}
 /*
 Color scheme: 
 big: #88f
