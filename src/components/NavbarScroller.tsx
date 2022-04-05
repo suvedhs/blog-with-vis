@@ -91,19 +91,6 @@ const BlogListContainer = styled.div`
 
 const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {name: string; to: string, img: string}[] }) => {
   const { links, blogs } = props
-
-  function updateScrollBar () {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
-    const scrolled = (winScroll / height) * 100
-    const bar = document.getElementById('progress-bar')
-    if (bar) {
-      bar.style.width = scrolled + '%'
-    }
-  }
-
-  window.onscroll = function () { updateScrollBar() }
-
   const DropdownLinks: any = () => blogs.map((link: {name: string, to: string}) =>
       <Link key={link.name} className='navbar shadow dropdown-item' href={link.to}>{link.name}</Link>
   )
@@ -137,9 +124,6 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
           <Ul>
             <NavLinks />
           </Ul>
-          <div className='progress-gray'>
-            <div id='progress-bar'></div>
-          </div>
       </Navbar>
   )
 }
