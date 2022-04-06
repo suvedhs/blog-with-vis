@@ -84,6 +84,16 @@ body {
   cursor: pointer;
 }
 
+@media screen and (max-width: 1000px) {
+  .big {
+    font-size: 10vw;
+  }
+
+  .small {
+    font-size: 3vw;
+  }
+}
+
 /*
 Color scheme: 
 big: #88f

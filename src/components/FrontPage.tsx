@@ -15,17 +15,34 @@ const Text = styled.div`
     align-content: center;
     justify-content: center;
 
-    div.big {
-        font-size: 500%;
+    .big {
+      font-size: 500%;
+    }
+
+    @media screen and (max-width: 1000px) {
+      width: 90%;
+      z-index: 2;
+
+      div.big {
+        font-size: 10vw;
+      }
+
     }
 `
 
 const Pic = styled.img`
-    display:flex;
     padding: 5%;
     filter: invert(57%) sepia(82%) saturate(2152%) hue-rotate(209deg) brightness(98%) contrast(106%);
     width: 30%;
     height: 100%;
+
+    @media screen and (max-width: 1000px) {
+      position: absolute;
+      width: 50%;
+      height: auto;
+      z-index: 1;
+      opacity: 0.2;
+    }
 `
 
 const Intro = styled.div`
