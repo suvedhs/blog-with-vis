@@ -14,7 +14,7 @@ import Healthcare from './components/blogs/Healthcare'
 const navigation = {
   links: [
     { name: 'Blogs', to: '/#blogs' },
-    { name: 'About Me', to: '/about' },
+    { name: 'About', to: '/about' },
     { name: 'Contact', to: '#contact' }
   ],
   blogs: [
