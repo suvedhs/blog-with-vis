@@ -4,7 +4,7 @@ import '../index.css'
 
 const Container = styled.div`
     margin: 5%;
-
+    scroll-margin-top: 10em;
 `
 
 const Head = styled.h2`
