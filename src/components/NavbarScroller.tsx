@@ -7,12 +7,11 @@ const Navbar = styled.nav`
   font-weight: 600;
   background: #fff1ec;
   display: flex;
-  flex-direction: column;
+  width: 100%;
   position: sticky;
   z-index: 1000;
   top: 0;
-  align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
   a {
     text-decoration: none;
     color: #fc7a5b;
@@ -26,13 +25,11 @@ const Navbar = styled.nav`
 const Ul = styled.ul`
   display: flex;
   flex-wrap: nowrap;
-  padding-left: 3%;
   padding-top: 2%;
-  align-self: flex-start;
-  list-style-type: none;
   padding-bottom: 2%;
-  -webkit-overflow-scrolling: touch;
-  width: 40%;
+  padding-left: 0;
+  list-style-type: none;
+  justify-content: center;
 `
 
 const Li = styled.li`
@@ -94,6 +91,7 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
   const DropdownLinks: any = () => blogs.map((link: {name: string, to: string}) =>
       <Link key={link.name} className='navbar shadow dropdown-item' href={link.to}>{link.name}</Link>
   )
+  const home = { name: 'Home', to: '/' }
 
   function makeLink (link: {name: string; to: string}) {
     if (link.name === 'Blogs') {
@@ -121,7 +119,12 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
 
   return (
       <Navbar>
-          <Ul>
+          <Ul className='left'>
+            <Li key={home.name}>
+              {makeLink(home)}
+            </Li>
+          </Ul>
+          <Ul className='right'>
             <NavLinks />
           </Ul>
       </Navbar>
