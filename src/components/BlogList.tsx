@@ -5,10 +5,15 @@ import '../index.css'
 const Container = styled.div`
     margin: 5%;
     scroll-margin-top: 10em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
 
 const Head = styled.h2`
     padding: 20px;
+    text-align: center;
 `
 
 const BlogBox = styled.a`
@@ -43,7 +48,11 @@ const Ul = styled.ul`
     display: flex;
     flex-direction: row;
     -webkit-overflow-scrolling: touch;
-    overflow: auto;
+    overflow: scroll;
+    max-width: 95%;
+    height: auto;
+    align-items: center;
+    justify-content: start;
 `
 
 const Li = styled.li`
@@ -56,6 +65,8 @@ const Li = styled.li`
   text-decoration: none;
   -webkit-box-align: center;
   -webkit-box-pack: center;
+  position: relative;
+  left: 0;
   -webkit-tap-highlight-color: transparent;
   align-items: center;
   display: flex;
