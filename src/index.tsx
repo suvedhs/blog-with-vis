@@ -18,8 +18,9 @@ const navigation = {
     { name: 'Contact', to: '#contact' }
   ],
   blogs: [
-    { name: 'Healthcare', to: '/healthcare', img: 'healthcare.png' },
-    { name: 'Mass Incarceration', to: 'mass-incarceration', img: 'mass-incarceration.jpg' }
+    { name: 'Healthcare', to: '/healthcare', img: 'healthcare.png', animation: 'Healthcare.gif' },
+    { name: 'Mass Incarceration', to: 'mass-incarceration', img: 'mass-incarceration.png', animation: 'mass-incarceration.gif' },
+    { name: 'Unions', to: 'unions', img: 'union.png', animation: 'union.gif' }
   ]
 }
 

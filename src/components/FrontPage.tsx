@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import '../index.css'
+import FancyLink from './FancyLink'
 
 const Italics = styled.span`
   font-style: italic;
@@ -55,12 +56,14 @@ const Intro = styled.div`
 `
 
 const FrontPage = (props: any) => {
+  const devLink = { name: 'full-stack developer', to: 'https://github.com/suvedhs' }
+  const funLink = { name: 'Funny Guy™', to: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' }
   return (
     <Intro className='rounded'>
         <Text>
             <div className='big'>Hi. I&apos;m Suvedh.</div>
             <div className='big'>A Leftist.</div>
-            <div className='small'>I&apos;m also a <a className='link' href='https://github.com/suvedhs'>full-stack developer</a> and <a className='link' href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Funny Guy™</a> with a newfound passion for <Italics>data visualization</Italics>. I blog about topics in American politics using analysis from publicly available data.</div>
+            <div className='small'>I&apos;m also a <FancyLink link={devLink} /> and <FancyLink link={funLink}/> with a newfound passion for <Italics>data visualization</Italics>. I blog about topics in American politics using analysis from publicly available data.</div>
         </Text>
         <Pic src={require('../assets/genericbargraph.png')} alt='generic bar graph'></Pic>
     </Intro>

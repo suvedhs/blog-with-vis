@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import '../index.css'
+import FancyLink from './FancyLink'
 
 const FooterContainer = styled.footer`
   text-align: center;
@@ -10,6 +11,8 @@ const FooterContainer = styled.footer`
   `
 
 function Footer () {
+  const mailLink = { name: "let's chat", to: 'mailto:suvedhs@gmail.com' }
+
   return (
       <FooterContainer id='contact'>
         <div className='big'>
@@ -17,7 +20,7 @@ function Footer () {
         </div>
         <div className='small'>
           Have questions, advice, praise?
-          <br />Send over a message, and <a className='link' href='mailto:suvedhs@gmail.com'>let&apos;s chat</a>.
+          <br />Send over a message, and <FancyLink link={mailLink} />.
           <br />Copyright &copy; Suvedh Srikanth 2022
         </div>
       </FooterContainer>

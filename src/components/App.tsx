@@ -2,7 +2,7 @@ import React from 'react'
 import FrontPage from './FrontPage'
 import BlogList from './BlogList'
 
-function App (props: {blogs: {name: string; to: string; img: string}[]}) {
+function App (props: {blogs: {name: string; to: string; img: string, animation: string}[]}) {
   const { blogs } = props
 
   return (

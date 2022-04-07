@@ -34,6 +34,33 @@ body {
   color: #fc7a5b;
   text-decoration: none;
   font-weight: 400;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  display:inline-flex;
+  overflow: hidden;
+  padding: 3px 1px;
+}
+
+.link__graphic {
+  position: absolute;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+  fill: none;
+  stroke: #fc7a5b;
+  stroke-width: 2.5px;
+}
+
+.link__graphic--slide {
+  top: -5px;
+  stroke-width: 2.5px;
+  transition: transform 0.7s;
+  transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+}
+
+.link:hover .link__graphic--slide {
+  transform: translate3d(66.6%, 0, 0);
 }
 
 .rounded {

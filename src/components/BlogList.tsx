@@ -8,7 +8,6 @@ const Container = styled.div`
 `
 
 const Head = styled.h2`
-    content-align: center;
     padding: 20px;
 `
 
@@ -24,9 +23,19 @@ const BlogBox = styled.a`
         border-radius: 5px;
     }
 
+    img.static {
+        position:absolute;
+        top: 30px;
+    }
+
+    :hover img.static {
+        opacity: 0;
+    }
+
     p {
         text-align: center;
         font-size: 30px;
+        margin-bottom: 0;
     }
 `
 
@@ -50,19 +59,20 @@ const Li = styled.li`
   -webkit-tap-highlight-color: transparent;
   align-items: center;
   display: flex;
-  margin: 5%;
   justify-content: center;
-  padding: 25px 35px;
+  margin: 5% 40px;
   text-decoration: none;
   white-space: nowrap;
   `
 
-const BlogList = (props: {blogs: {name: string; to: string; img: string}[] }) => {
+const BlogList = (props: {blogs: {name: string; to: string; img: string, animation: string}[] }) => {
   const { blogs } = props
-  const Blogs: any = () => blogs.map((link: {name: string, to: string, img:string }) =>
+  const Blogs: any = () => blogs.map((link: {name: string, to: string, img:string, animation: string }) =>
     <Li className='shadow point' key={link.name}>
         <BlogBox className='small rounded link' href={link.to}>
-            <img src={require('../assets/' + link.img)} alt= {link.img + ' image'}></img>
+            <img className='static' src={require('../assets/' + link.img)} alt= {link.img + ' image'}></img>
+            <img className='active' src={require('../assets/' + link.animation)} alt= {link.img + ' image'}></img>
+
             <p>{link.name}</p>
         </BlogBox>
     </Li>)
