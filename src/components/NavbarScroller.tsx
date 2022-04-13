@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import '../index.css'
+
+const Space = styled.div`
+  @media screen and (max-width: 1000px) {
+      height: 50px;
+  }
+`
 
 const Navbar = styled.nav`
   font-family: 'Nunito', sans-serif;
@@ -20,8 +26,135 @@ const Navbar = styled.nav`
   a:visited {
     color: #fc7a5b;
   }
-  
+
+  @media screen and (max-width: 1000px) {
+      display: none;
+  }
 `
+
+const MobileNavbar = styled.nav`
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  background: #ffd364;
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  z-index: 10;
+  opacity: 0;
+  transition: all 600ms cubic-bezier(.62,.04,.3,1.56);
+  transition-delay: 100ms;
+
+  ul {
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    li {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      list-style: none;
+      font-size: 24px;
+      line-height: 2.2;
+      letter-spacing: 1.7px;
+      
+      &:before {
+        
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+      display: flex;
+  }
+
+  @keyframes slideIn {
+    0% {
+      width: 0%;
+      // transform: scale(.3);
+      opacity: 0;
+    }
+    
+    100% {
+      width: 50%;
+      // transform:scale(1);
+      opacity: 1;
+    }
+  }
+  
+  &.show {
+    width: 70%;
+    opacity: 1;
+  }
+`
+
+const OrangeBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fc7a5b;
+  height: 100%;
+  width: 0%;
+  transition: all 500ms cubic-bezier(.62,.04,.3,1.8);
+  transition-delay: 50ms;
+  z-index: 5;
+  opacity: 1;
+
+  &.slide {
+    width: 70.5%;
+    opacity: 1;
+  }
+`
+
+const Hamburger = styled.div`
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  top: 1%;
+  left: 3%;
+  z-index: 1001;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  display: none;
+
+  .icon-1, .icon-2, .icon-3 {
+      position: absolute;
+      left: 25%;
+      top: 50%;
+      width: 32px;
+      height: 3px;
+      background-color: #fc7a5b;
+      transition: all 400ms cubic-bezier(.84,.06,.52,1.8);
+  }
+
+  .icon-1 {
+    transform: translateY(-8px);
+    animation-delay: 100ms;
+  }
+
+  .icon-3 {
+    transform: translateY(8px);
+    animation-delay: 250ms;
+  }
+
+  .a {
+    transform: rotate(40deg);
+  }
+  .b {
+    transform: rotate(-40deg);
+  }
+  .c {
+    opacity: 0;
+  }
+
+  @media screen and (max-width: 1000px) {
+      display: block;
+  }
+`
+
 const Ul = styled.ul`
   display: flex;
   flex-wrap: nowrap;
@@ -69,6 +202,20 @@ const Link = styled.a`
   }
 `
 
+const MobileLink = styled.a`
+  i {
+    transition: transform ease 0.5s, -webkit-transform ease 0.5s;
+  }
+  &:hover i {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+
+  &:hover ul {
+    display: flex;
+  }
+`
+
 const BlogListContainer = styled.div`
 
   position: relative;
@@ -93,41 +240,127 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
   )
   const home = { name: 'Home', to: '/' }
 
-  function makeLink (link: {name: string; to: string}) {
+  const hamburgerRef = useRef<HTMLDivElement>(null)
+  const icon1 = useRef<HTMLDivElement>(null)
+  const icon2 = useRef<HTMLDivElement>(null)
+  const icon3 = useRef<HTMLDivElement>(null)
+  const navslider = useRef<HTMLDivElement>(null)
+  const orangeRef = useRef<HTMLDivElement>(null)
+
+  let toggledMobileNav = false
+
+  function makeLink (link: {name: string; to: string}, isMobile: boolean) {
     if (link.name === 'Blogs') {
-      return (
-        <BlogListContainer>
-          <Link key={link.name} className='navbar shadow blog' href={link.to}>{link.name} <i className="arrow down"></i>
-          </Link>
-          <ul>
-            <DropdownLinks />
-          </ul>
-        </BlogListContainer>
-      )
+      if (isMobile) {
+        return (
+          <BlogListContainer>
+            <MobileLink key={link.name} href={link.to}>{link.name}<i className="arrow down"></i></MobileLink>
+          </BlogListContainer>
+        )
+      } else {
+        return (
+          <BlogListContainer>
+            <Link key={link.name} className='navbar shadow blog' href={link.to}>{link.name}<i className="arrow down"></i>
+            </Link>
+            <ul>
+              <DropdownLinks />
+            </ul>
+          </BlogListContainer>
+        )
+      }
     } else {
-      return (
-        <Link className='navbar shadow' href={link.to}>{link.name}</Link>
-      )
+      if (isMobile) {
+        return (
+          <MobileLink href={link.to}>{link.name}</MobileLink>
+        )
+      } else {
+        return (
+          <Link className='navbar shadow' href={link.to}>{link.name}</Link>
+        )
+      }
     }
   }
 
+  function toggleMobileNavbar () {
+    toggledMobileNav = !toggledMobileNav
+    if (icon1.current && icon2.current && icon3.current && navslider.current && orangeRef.current) {
+      if (toggledMobileNav) {
+        icon1.current.className += ' a'
+        icon2.current.className += ' b'
+        icon3.current.className += ' c'
+        navslider.current.className += ' show'
+        orangeRef.current.className += ' slide'
+      } else {
+        icon1.current.className = icon1.current.className.substring(0, icon1.current.className.length - 2)
+        icon2.current.className = icon2.current.className.substring(0, icon2.current.className.length - 2)
+        icon3.current.className = icon3.current.className.substring(0, icon3.current.className.length - 2)
+        navslider.current.className = navslider.current.className.substring(0, navslider.current.className.length - 5)
+        orangeRef.current.className = orangeRef.current.className.substring(0, orangeRef.current.className.length - 6)
+      }
+    }
+  }
+
+  function useOutsideAlerter () {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside (event: { target: any }) {
+        if ((navslider.current && !navslider.current.contains(event.target) && toggledMobileNav) || (hamburgerRef.current && hamburgerRef.current.contains(event.target))) {
+          toggleMobileNavbar()
+        }
+      }
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [navslider])
+  }
+
+  useOutsideAlerter()
+
   const NavLinks: any = () => links.map((link: {name: string, to: string }) =>
       <Li key={link.name}>
-        {makeLink(link)}
+        {makeLink(link, false)}
       </Li>
   )
 
+  const MobileNavLinks: any = () => links.map((link: {name: string, to: string }) =>
+    <li key={link.name}>
+      {makeLink(link, true)}
+    </li>
+  )
+
   return (
-      <Navbar>
-          <Ul className='left'>
-            <Li key={home.name}>
-              {makeLink(home)}
-            </Li>
-          </Ul>
-          <Ul className='right'>
-            <NavLinks />
-          </Ul>
-      </Navbar>
+      <div>
+        <Navbar>
+            <Ul className='left'>
+              <Li key={home.name}>
+                {makeLink(home, false)}
+              </Li>
+            </Ul>
+            <Ul className='right'>
+              <NavLinks />
+            </Ul>
+        </Navbar>
+        <Space />
+        <Hamburger ref={hamburgerRef}>
+          <div className="icon-1" ref={icon1} />
+          <div className="icon-2" ref={icon2} />
+          <div className="icon-3" ref={icon3} />
+        </Hamburger>
+        <MobileNavbar ref={navslider}>
+          <ul>
+            <li key={home.name}>
+              {makeLink(home, true)}
+            </li>
+            <MobileNavLinks />
+          </ul>
+        </MobileNavbar>
+        <OrangeBackground ref={orangeRef}/>
+      </div>
   )
 }
 
