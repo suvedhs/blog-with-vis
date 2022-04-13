@@ -131,6 +131,12 @@ body {
   }
 }
 
+@media screen and (max-width: 500px) {
+  .small {
+    font-size: 15px;
+  }
+}
+
 /*
 Color scheme: 
 big: #88f
