@@ -192,26 +192,40 @@ const Link = styled.a`
     transition: transform ease 0.5s, -webkit-transform ease 0.5s;
   }
 
-  &:hover i {
+  i.clicked {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
   }
 
-  &:hover ul {
+  ul {
+    display: none;
+  }
+
+  ul.shown {
     display: flex;
   }
 `
 
 const MobileLink = styled.a`
+  color: #fc7a5b;
+  text-decoration: none;
+  font-weight: 400;
+  cursor: pointer;
+
   i {
     transition: transform ease 0.5s, -webkit-transform ease 0.5s;
   }
-  &:hover i {
+
+  i.clicked {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
   }
 
-  &:hover ul {
+  ul {
+    display: none;
+  }
+
+  &:active ul {
     display: flex;
   }
 `
@@ -236,7 +250,14 @@ const BlogListContainer = styled.div`
 const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {name: string; to: string, img: string}[] }) => {
   const { links, blogs } = props
   const DropdownLinks: any = () => blogs.map((link: {name: string, to: string}) =>
-      <Link key={link.name} className='navbar shadow dropdown-item' href={link.to}>{link.name}</Link>
+      <li key={link.name}>
+        <Link className='navbar shadow dropdown-item' href={link.to}>{link.name}</Link>
+      </li>
+  )
+  const DropdownMobileLinks: any = () => blogs.map((link: {name: string, to: string}) =>
+      <li key={link.name}>
+        <a href={link.to}>{link.name}</a>
+      </li>
   )
   const home = { name: 'Home', to: '/' }
 
@@ -247,14 +268,54 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
   const navslider = useRef<HTMLDivElement>(null)
   const orangeRef = useRef<HTMLDivElement>(null)
 
+  const arrow = useRef<HTMLElement>(null)
+  const bloglistref = useRef<HTMLUListElement>(null)
+
   let toggledMobileNav = false
+  let toggleBlog = false
+
+  function toggleBlogList () {
+    toggleBlog = !toggleBlog
+    if (arrow.current) {
+      if (toggleBlog) {
+        arrow.current.className += ' clicked'
+      } else {
+        arrow.current.className = arrow.current.className.substring(0, arrow.current.className.length - 8)
+      }
+    }
+  }
+
+  function toggleMobileNavbar () {
+    toggledMobileNav = !toggledMobileNav
+    if (!toggledMobileNav) {
+      toggleBlog = false
+    }
+    if (icon1.current && icon2.current && icon3.current && navslider.current && orangeRef.current) {
+      if (toggledMobileNav) {
+        icon1.current.className += ' a'
+        icon2.current.className += ' b'
+        icon3.current.className += ' c'
+        navslider.current.className += ' show'
+        orangeRef.current.className += ' slide'
+      } else {
+        icon1.current.className = icon1.current.className.substring(0, icon1.current.className.length - 2)
+        icon2.current.className = icon2.current.className.substring(0, icon2.current.className.length - 2)
+        icon3.current.className = icon3.current.className.substring(0, icon3.current.className.length - 2)
+        navslider.current.className = navslider.current.className.substring(0, navslider.current.className.length - 5)
+        orangeRef.current.className = orangeRef.current.className.substring(0, orangeRef.current.className.length - 6)
+      }
+    }
+  }
 
   function makeLink (link: {name: string; to: string}, isMobile: boolean) {
     if (link.name === 'Blogs') {
       if (isMobile) {
         return (
           <BlogListContainer>
-            <MobileLink key={link.name} href={link.to}>{link.name}<i className="arrow down"></i></MobileLink>
+            <MobileLink key={link.name} onClick={toggleBlogList}>{link.name}<i className="arrow down" ref={arrow}></i></MobileLink>
+            <ul ref={bloglistref}>
+              <DropdownMobileLinks />
+            </ul>
           </BlogListContainer>
         )
       } else {
@@ -281,45 +342,26 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
     }
   }
 
-  function toggleMobileNavbar () {
-    toggledMobileNav = !toggledMobileNav
-    if (icon1.current && icon2.current && icon3.current && navslider.current && orangeRef.current) {
-      if (toggledMobileNav) {
-        icon1.current.className += ' a'
-        icon2.current.className += ' b'
-        icon3.current.className += ' c'
-        navslider.current.className += ' show'
-        orangeRef.current.className += ' slide'
-      } else {
-        icon1.current.className = icon1.current.className.substring(0, icon1.current.className.length - 2)
-        icon2.current.className = icon2.current.className.substring(0, icon2.current.className.length - 2)
-        icon3.current.className = icon3.current.className.substring(0, icon3.current.className.length - 2)
-        navslider.current.className = navslider.current.className.substring(0, navslider.current.className.length - 5)
-        orangeRef.current.className = orangeRef.current.className.substring(0, orangeRef.current.className.length - 6)
-      }
-    }
-  }
-
-  function useOutsideAlerter () {
+  function handleNav () {
     useEffect(() => {
       /**
        * Alert if clicked on outside of element
        */
-      function handleClickOutside (event: { target: any }) {
+      function handleClickNav (event: { target: any }) {
         if ((navslider.current && !navslider.current.contains(event.target) && toggledMobileNav) || (hamburgerRef.current && hamburgerRef.current.contains(event.target))) {
           toggleMobileNavbar()
         }
       }
       // Bind the event listener
-      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('mousedown', handleClickNav)
       return () => {
         // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickOutside)
+        document.removeEventListener('mousedown', handleClickNav)
       }
     }, [navslider])
   }
 
-  useOutsideAlerter()
+  handleNav()
 
   const NavLinks: any = () => links.map((link: {name: string, to: string }) =>
       <Li key={link.name}>
