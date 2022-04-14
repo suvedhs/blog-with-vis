@@ -4,7 +4,7 @@ import '../index.css'
 
 const Space = styled.div`
   @media screen and (max-width: 1000px) {
-      height: 50px;
+      height: 100px;
   }
 `
 
@@ -38,26 +38,27 @@ const MobileNavbar = styled.nav`
   background: #ffd364;
   display: none;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  bottom:0;
   width: 0%;
   z-index: 10;
   opacity: 0;
+  overflow: auto;
   transition: all 600ms cubic-bezier(.62,.04,.3,1.56);
   transition-delay: 100ms;
 
   ul {
-    margin: 0;
-    position: absolute;
-    top: 30%;
+    position: fixed;
+    margin-top: 30%;
+    width: 45%;
     li {
       font-family: 'Nunito', sans-serif;
       font-weight: 600;
       list-style: none;
       font-size: 24px;
-      line-height: 2.2;
+      margin-top: 25px;
       letter-spacing: 1.7px;
       
       &:before {
@@ -85,12 +86,13 @@ const MobileNavbar = styled.nav`
   }
   
   &.show {
-    width: 70%;
+    width: 60%;
     opacity: 1;
   }
 `
 
 const OrangeBackground = styled.div`
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -101,9 +103,12 @@ const OrangeBackground = styled.div`
   transition-delay: 50ms;
   z-index: 5;
   opacity: 1;
+  @media screen and (max-width: 1000px) {
+      display: flex;
+  }
 
   &.slide {
-    width: 70.5%;
+    width: 61%;
     opacity: 1;
   }
 `
@@ -112,8 +117,8 @@ const Hamburger = styled.div`
   position: absolute;
   height: 60px;
   width: 60px;
-  top: 1%;
-  left: 3%;
+  top: 15px;
+  left: 15px;
   z-index: 1001;
   cursor: pointer;
   border-radius: 50%;
@@ -211,6 +216,8 @@ const MobileLink = styled.a`
   text-decoration: none;
   font-weight: 400;
   cursor: pointer;
+  line-height: 0%;
+  padding-right: 30%;
 
   i {
     transition: transform ease 0.5s, -webkit-transform ease 0.5s;
@@ -225,8 +232,12 @@ const MobileLink = styled.a`
     display: none;
   }
 
-  &:active ul {
-    display: flex;
+  @media screen and (max-width: 500px) {
+    font-size: .8em;
+  }
+
+  @media screen and (max-width: 350px) {
+    font-size: 15px;
   }
 `
 
@@ -247,6 +258,22 @@ const BlogListContainer = styled.div`
   }
 `
 
+const BlogListContainerMobile = styled.div`
+  position: relative;
+
+  ul {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    padding: 0;
+    margin-top: 0;
+    margin-left: 5%;
+    z-index: 100;
+    transition: all 0.2s ease-in-out;
+  }
+
+`
+
 const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {name: string; to: string, img: string}[] }) => {
   const { links, blogs } = props
   const DropdownLinks: any = () => blogs.map((link: {name: string, to: string}) =>
@@ -256,7 +283,7 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
   )
   const DropdownMobileLinks: any = () => blogs.map((link: {name: string, to: string}) =>
       <li key={link.name}>
-        <a href={link.to}>{link.name}</a>
+        <MobileLink href={link.to}>{link.name}</MobileLink>
       </li>
   )
   const home = { name: 'Home', to: '/' }
@@ -276,11 +303,13 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
 
   function toggleBlogList () {
     toggleBlog = !toggleBlog
-    if (arrow.current) {
+    if (arrow.current && bloglistref.current) {
       if (toggleBlog) {
         arrow.current.className += ' clicked'
+        bloglistref.current.style.display = 'flex'
       } else {
         arrow.current.className = arrow.current.className.substring(0, arrow.current.className.length - 8)
+        bloglistref.current.style.display = 'none'
       }
     }
   }
@@ -290,17 +319,19 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
     if (!toggledMobileNav) {
       toggleBlog = false
     }
-    if (icon1.current && icon2.current && icon3.current && navslider.current && orangeRef.current) {
+    if (icon1.current && icon2.current && icon3.current && navslider.current && orangeRef.current && hamburgerRef.current) {
       if (toggledMobileNav) {
         icon1.current.className += ' a'
         icon2.current.className += ' b'
         icon3.current.className += ' c'
+        hamburgerRef.current.style.position = 'fixed'
         navslider.current.className += ' show'
         orangeRef.current.className += ' slide'
       } else {
         icon1.current.className = icon1.current.className.substring(0, icon1.current.className.length - 2)
         icon2.current.className = icon2.current.className.substring(0, icon2.current.className.length - 2)
         icon3.current.className = icon3.current.className.substring(0, icon3.current.className.length - 2)
+        hamburgerRef.current.style.position = 'absolute'
         navslider.current.className = navslider.current.className.substring(0, navslider.current.className.length - 5)
         orangeRef.current.className = orangeRef.current.className.substring(0, orangeRef.current.className.length - 6)
       }
@@ -311,12 +342,12 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
     if (link.name === 'Blogs') {
       if (isMobile) {
         return (
-          <BlogListContainer>
+          <BlogListContainerMobile>
             <MobileLink key={link.name} onClick={toggleBlogList}>{link.name}<i className="arrow down" ref={arrow}></i></MobileLink>
             <ul ref={bloglistref}>
               <DropdownMobileLinks />
             </ul>
-          </BlogListContainer>
+          </BlogListContainerMobile>
         )
       } else {
         return (
