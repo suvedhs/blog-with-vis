@@ -249,6 +249,7 @@ const BlogListContainer = styled.div`
     position: absolute;
     display: none;
     flex-direction: column;
+    list-style: none;
     padding: 0;
     z-index: 100;
   }
