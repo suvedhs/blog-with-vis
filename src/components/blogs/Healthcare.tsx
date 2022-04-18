@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import BlogpostTitle from './BlogpostTitle'
 
 const Body = styled.div`
   width: 90%;
@@ -11,15 +12,10 @@ const Body = styled.div`
   align-items: center;
 `
 
-const Super = styled.div`
-  font-size: 70px;
-`
-
 function Healthcare () {
   return (
           <Body>
-            <div className='big'>The Pathetic State of</div>
-            <Super className='big'>American Healthcare</Super>
+            <BlogpostTitle title='American Healthcare'/>
             <p className='small'>
               I&apos;m still doing research on this topic. Bear with me, there is a lot of research to be done.
             </p>

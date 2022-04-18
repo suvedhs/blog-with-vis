@@ -10,6 +10,9 @@ import NavbarScroller from './components/NavbarScroller'
 import Footer from './components/Footer'
 import About from './components/About'
 import Healthcare from './components/blogs/Healthcare'
+import MassIncarceration from './components/blogs/MassIncarceration'
+import Unions from './components/blogs/Unions'
+import Texas from './components/blogs/Texas'
 
 const navigation = {
   links: [
@@ -37,6 +40,9 @@ ReactDOM.render(
           <Route path='/' element={<App blogs={navigation.blogs}/>} />
           <Route path='/about' element={<About />} />
           <Route path='/healthcare' element={<Healthcare />} />
+          <Route path='/mass-incarceration' element={<MassIncarceration />} />
+          <Route path='/unions' element={<Unions />} />
+          <Route path='/texas' element={<Texas />} />
         </Routes>
         <Footer />
       </Router>
