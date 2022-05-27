@@ -1,72 +1,75 @@
 import React from 'react'
 import styled from 'styled-components'
 import '../index.css'
-import FancyLink from './FancyLink'
+import LogoVideo from '../assets/logo_video.mp4'
 
-const Italics = styled.span`
-  font-style: italic;
-  font-weight: 400;
+const Logo = styled.div`
 `
 
-const Text = styled.div`
-    padding: 5%;
-    width: 50%;
-    display:flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-
-    .big {
-      font-size: 500%;
-    }
-
-    @media screen and (max-width: 1000px) {
-      width: 90%;
-      z-index: 2;
-
-      div.big {
-        font-size: 10vw;
-      }
-
-    }
+const This = styled.text`
+    font-size: 32vw;
 `
 
-const Pic = styled.img`
-    padding: 5%;
-    filter: invert(57%) sepia(82%) saturate(2152%) hue-rotate(209deg) brightness(98%) contrast(106%);
-    width: 30%;
-    height: 100%;
-
-    @media screen and (max-width: 1000px) {
-      position: absolute;
-      width: 50%;
-      height: auto;
-      z-index: 1;
-      opacity: 0.2;
-    }
+const Pathetic = styled.text`
+    font-size: 12vw;
 `
 
-const Intro = styled.div`
-  width: 90%;
-  display: flex;
-  font-family: 'Bitter', serif;
-  margin: 0 5%;
-  justify-content: center;
-  align-items: center;
+const MaskSvg = styled.svg`
+    position: absolute;
+    top: 17vh;
+    left: 0;
+    height: 72vh;
+    width: 100%;
+
+    rect {
+      mask: url(#mask)
+    }
+
+  `
+
+const Tagline = styled.div`
+    color: black;
+    font-size: 4vw;
+    font-family: 'Bitter', serif;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    top: 90vh;
+    z-index: 10;
+`
+
+const Video = styled.video`
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    height: 83vh;
+    max-width: 100%;
+    overflow: hidden;
 `
 
 const FrontPage = (props: any) => {
-  const devLink = { name: 'full-stack developer', to: 'https://github.com/suvedhs' }
-  const funLink = { name: 'Funny Guy™', to: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' }
   return (
-    <Intro className='rounded'>
-        <Text>
-            <div className='big'>Hi. I&apos;m Suvedh.</div>
-            <div className='big'>A Leftist.</div>
-            <div className='small'>I&apos;m also a <FancyLink link={devLink} /> and <FancyLink link={funLink}/> with a newfound passion for <Italics>data visualization</Italics>. I blog about topics in American politics using analysis from publicly available data.</div>
-        </Text>
-        <Pic src={require('../assets/genericbargraph.png')} alt='generic bar graph'></Pic>
-    </Intro>
+      <Logo>
+        <Video loop muted autoPlay playsInline >
+          <source src={LogoVideo} type="video/mp4" />
+        </Video>
+        <MaskSvg>
+          <defs>
+            <mask id="mask" x="0" y="0" width="100%" height="100%">
+              <rect fill='white' x="0" y="0" width="100%" height="100%"/>
+              <This className='logo' x='50%' y='70%' textAnchor='middle'>
+                this
+              </This>
+              <Pathetic className='logo' x='50%' y='95%' textAnchor='middle'>
+                is pathetic
+              </Pathetic>
+            </mask>
+          </defs>
+          <rect fill='#fc7a5b' x="0" y="0" width="100%" height="100%"/>
+        </MaskSvg>
+        <Tagline>a blog about America</Tagline>
+      </Logo>
   )
 }
 

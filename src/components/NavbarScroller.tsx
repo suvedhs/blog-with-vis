@@ -11,7 +11,7 @@ const Space = styled.div`
 const Navbar = styled.nav`
   font-family: 'Nunito', sans-serif;
   font-weight: 600;
-  background: #fff1ec;
+  background: #fc7a5b;
   display: flex;
   width: 100%;
   position: sticky;
@@ -35,7 +35,7 @@ const Navbar = styled.nav`
 const MobileNavbar = styled.nav`
   font-family: 'Nunito', sans-serif;
   font-weight: 600;
-  background: #ffd364;
+  background: #fc7a5b;
   display: none;
   width: 100%;
   position: fixed;

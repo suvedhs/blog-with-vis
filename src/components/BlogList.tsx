@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import '../index.css'
 
 const Container = styled.div`
-    margin: 15%;
+    margin: 5% 15%;
     scroll-margin-top: 10em;
     display: flex;
     flex-direction: column;
