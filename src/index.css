@@ -105,9 +105,8 @@ body {
 }
 
 .shadow:hover {
-  border: #fc7a5b;
   border-style: solid;
-  box-shadow: 12px 15px #fc7a5b;
+  box-shadow: 12px 15px #88f;
   top: -5px;
   left: -2px;
 }
@@ -127,6 +126,12 @@ body {
 
 .point {
   cursor: pointer;
+}
+
+.main-box {
+  width: 80vw;
+  height: 83vh;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1000px) {

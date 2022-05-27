@@ -17,15 +17,14 @@ const Navbar = styled.nav`
   position: sticky;
   z-index: 1000;
   top: 0;
-  justify-content: space-around;
   a {
     text-decoration: none;
     color: #fc7a5b;
   }
   
-  a:visited {
+  /* a:visited {
     color: #fc7a5b;
-  }
+  } */
 
   @media screen and (max-width: 1000px) {
       display: none;
@@ -168,6 +167,10 @@ const Ul = styled.ul`
   padding-left: 0;
   list-style-type: none;
   justify-content: center;
+
+  .right {
+    justify-content: right;
+  }
 `
 
 const Li = styled.li`
@@ -272,7 +275,30 @@ const BlogListContainerMobile = styled.div`
     z-index: 100;
     transition: all 0.2s ease-in-out;
   }
+`
 
+const Logo = styled.a`
+    display: flex;
+    flex-direction: column;
+    color: #88f;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    letter-spacing: 3px;
+    margin: 0 5%;
+
+    &:visited {
+      color: #88f;
+    }
+`
+
+const This = styled.span`
+    font-size: 6vw;
+`
+
+const Pathetic = styled.span`
+    font-size: 1.9vw;
 `
 
 const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {name: string; to: string, img: string}[] }) => {
@@ -410,6 +436,10 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
   return (
       <div>
         <Navbar>
+            <Logo key='logo' className='logo' href='/'>
+              <This>this</This>
+              <Pathetic>is pathetic</Pathetic>
+            </Logo>
             <Ul className='left'>
               <Li key={home.name}>
                 {makeLink(home, false)}
