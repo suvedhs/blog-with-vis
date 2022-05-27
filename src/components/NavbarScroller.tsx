@@ -13,7 +13,6 @@ const Navbar = styled.nav`
   font-weight: 600;
   background: #fc7a5b;
   display: flex;
-  width: 100%;
   position: sticky;
   z-index: 1000;
   top: 0;
@@ -167,10 +166,17 @@ const Ul = styled.ul`
   padding-left: 0;
   list-style-type: none;
   justify-content: center;
+`
 
-  .right {
-    justify-content: right;
-  }
+const RightButtons = styled.ul`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  right: 15vw;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 0;
+  list-style-type: none;
 `
 
 const Li = styled.li`
@@ -445,9 +451,9 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
                 {makeLink(home, false)}
               </Li>
             </Ul>
-            <Ul className='right'>
+            <RightButtons>
               <NavLinks />
-            </Ul>
+            </RightButtons>
         </Navbar>
         <Space />
         <Hamburger ref={hamburgerRef}>
