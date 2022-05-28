@@ -5,14 +5,36 @@ import '../index.css'
 const Graph = styled.svg`
   position: absolute;
   left: -10px;
-  top: 88vh;
+  top: 99vh;
   z-index: 6;
   overflow: auto;
+
+  @media screen and (max-width: 1200px) {
+    top: 98vh;
+  }
+  @media screen and (max-width: 1000px) {
+    top: 92.5vh;
+  }
+  @media screen and (max-width: 950px) and (max-height: 1400px) {
+    top: 88.9vh;
+  }
+  @media screen and (max-width: 900px) and (max-height: 1300px) {
+    top: 98.9vh;
+  }
+  @media screen and (max-width: 900px) and (max-height: 1200px) {
+    top: 89vh;
+  }
+  @media screen and (max-width: 450px) {
+    top: 88.9vh;
+  }
+  @media screen and (max-width: 380px) {
+    top: 89vh;
+  }
 
 `
 
 const Green = styled.path`
-    transition: all 0.35s ease-in-out;   /* Hover off */
+  transition: all 0.35s ease-in-out;   /* Hover off */
 
   &:hover {
     filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
@@ -44,23 +66,47 @@ const GraphLabels = styled.svg`
 `
 
 const GraphWrapper = styled.div`
-    transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 
 `
 
 const Popup1 = styled.div`
-    font-size: 1.8em;
-    text-align: center;
-    z-index: 20;
-    padding: 5px;
-    width: 400px;
-    top: 60vw;
-    left: 60vw;
-    height: 100px;
-    border: 2px solid #88f;
-    border-radius: 2px;
+  font-size: 1.8em;
+  text-align: center;
+  z-index: 20;
+  padding: 5px;
+  width: 400px;
+  top: 120vh;
+  left: 60vw;
+  height: 100px;
+  border: 2px solid #88f;
+  border-radius: 2px;
+  opacity: 0;
+  transition: all 0.8s ease-in-out;
+
+  @media screen and (max-width: 1400px) {
+    top: 110vh;
+    left: 55vw;
+  }
+  @media screen and (max-width: 1000px) {
+    top: 98vh;
+    left: 45vw;
+  }
+  @media screen and (max-width: 500px) {
+    opacity: 1;
+    font-size: 0.8em;
+    width: 150px;
+    height: 55px;
+    top: 95vh;
+  }
+  @media screen and (max-width: 450px) {
+    top: 90vh;
+  }
+  @media screen and (max-width: 300px) {
     opacity: 0;
-    transition: all 0.8s ease-in-out;
+    visibility: hidden;
+  }
+  
 `
 
 const Tran = styled.div`

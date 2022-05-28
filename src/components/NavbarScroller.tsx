@@ -29,7 +29,7 @@ const Navbar = styled.nav`
 const MobileNavbar = styled.nav`
   font-family: 'Nunito', sans-serif;
   font-weight: 600;
-  background: #fc7a5b;
+  background: #ffd364;
   display: none;
   width: 100%;
   position: fixed;
@@ -37,7 +37,7 @@ const MobileNavbar = styled.nav`
   left: 0;
   bottom:0;
   width: 0%;
-  z-index: 10;
+  z-index: 51;
   opacity: 0;
   overflow: auto;
   transition: all 600ms cubic-bezier(.62,.04,.3,1.56);
@@ -85,17 +85,17 @@ const MobileNavbar = styled.nav`
   }
 `
 
-const OrangeBackground = styled.div`
+const GreenBackground = styled.div`
   display: none;
   position: absolute;
   top: 0;
   left: 0;
-  background: #fc7a5b;
+  background: #2FFFD4;
   height: 100%;
   width: 0%;
   transition: all 500ms cubic-bezier(.62,.04,.3,1.8);
   transition-delay: 50ms;
-  z-index: 5;
+  z-index: 50;
   opacity: 1;
   @media screen and (max-width: 1000px) {
       display: flex;
@@ -125,7 +125,7 @@ const Hamburger = styled.div`
       top: 50%;
       width: 32px;
       height: 3px;
-      background-color: #fc7a5b;
+      background-color: #88f;
       transition: all 400ms cubic-bezier(.84,.06,.52,1.8);
   }
 
@@ -280,27 +280,31 @@ const BlogListContainerMobile = styled.div`
 `
 
 const Logo = styled.a`
-    display: flex;
-    flex-direction: column;
-    color: #88f;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    line-height: 1;
-    letter-spacing: 3px;
-    margin: 0 5%;
+  display: flex;
+  flex-direction: column;
+  color: #88f;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  letter-spacing: 3px;
+  margin: 0 5%;
 
-    &:visited {
-      color: #88f;
-    }
+  &:visited {
+    color: #88f;
+  }
 `
 
 const This = styled.span`
-    font-size: 6vw;
+  font-size: 6vw;
 `
 
 const Pathetic = styled.span`
-    font-size: 1.9vw;
+  font-size: 1.9vw;
+`
+
+const Bg = styled.div`
+  background-color: #fc7a5b;
 `
 
 const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {name: string; to: string, img: string}[] }) => {
@@ -436,7 +440,7 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
   )
 
   return (
-      <div>
+      <Bg>
         <Navbar>
             <Logo key='logo' className='logo' href='/'>
               <This>this</This>
@@ -465,8 +469,8 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
             <MobileNavLinks />
           </ul>
         </MobileNavbar>
-        <OrangeBackground ref={orangeRef}/>
-      </div>
+        <GreenBackground ref={orangeRef}/>
+      </Bg>
   )
 }
 

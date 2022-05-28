@@ -32,10 +32,10 @@ const Text = styled.div`
 `
 
 const Intro = styled.div`
-  width: 90%;
+  width: 80%;
   display: flex;
   font-family: 'Bitter', serif;
-  margin: 20% 5% 0 5%;
+  margin: 30% 5% 0 5%;
   justify-content: left;
   align-items: center;
   z-index: 2;
