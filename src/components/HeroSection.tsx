@@ -39,6 +39,15 @@ const Intro = styled.div`
   justify-content: left;
   align-items: center;
   z-index: 2;
+  @media screen and (max-width: 950px) {
+    margin-top: 40%;
+  }
+  @media screen and (max-width: 550px) {
+    margin-top: 55%;
+  }
+  @media screen and (max-width: 450px) {
+    margin-top: 60%;
+  }
 `
 
 const HeroSection = (props: any) => {

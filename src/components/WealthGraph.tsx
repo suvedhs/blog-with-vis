@@ -24,6 +24,9 @@ const Graph = styled.svg`
   @media screen and (max-width: 900px) and (max-height: 1200px) {
     top: 89vh;
   }
+  @media screen and (max-width: 800px) {
+    top: 88.9vh;
+  }
   @media screen and (max-width: 450px) {
     top: 88.9vh;
   }

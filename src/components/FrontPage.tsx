@@ -122,7 +122,7 @@ const Video = styled.video`
     }
     @media screen and (max-width: 550px) {
       height: 73vh;
-\    }
+    }
     @media screen and (max-width: 525px) {
       height: 65vh;
     }
@@ -157,6 +157,9 @@ const FrontPage = (props: any) => {
     thisHeight = '45%'
     patheticHeight = '67%'
     MaskVideo = LogoVideoVertical
+    if (window.innerHeight > 1000) {
+      patheticHeight = '60%'
+    }
   }
   if (window.innerWidth < 860) {
     thisHeight = '51%'
@@ -168,6 +171,9 @@ const FrontPage = (props: any) => {
   }
   if (window.innerWidth < 650) {
     patheticHeight = '60%'
+  }
+  if (window.innerWidth < 550) {
+    patheticHeight = '63%'
   }
   if (window.innerWidth < 480) {
     patheticHeight = '59%'
