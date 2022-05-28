@@ -33,9 +33,12 @@ const Tagline = styled.div`
     font-family: 'Bitter', serif;
     position: absolute;
     text-align: center;
-    width: 100%;
-    left: 0;
     top: 90vh;
+    left: 0; 
+    right: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+    max-width: 700px;
     z-index: 10;
 `
 

@@ -20,10 +20,6 @@ const Navbar = styled.nav`
     text-decoration: none;
     color: #fc7a5b;
   }
-  
-  /* a:visited {
-    color: #fc7a5b;
-  } */
 
   @media screen and (max-width: 1000px) {
       display: none;
