@@ -6,8 +6,6 @@ import ReactDOM from 'react-dom'
 import App from './components/App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import NavbarScroller from './components/NavbarScroller'
-import Footer from './components/Footer'
 import About from './components/About'
 import Healthcare from './components/blogs/Healthcare'
 import MassIncarceration from './components/blogs/MassIncarceration'
@@ -35,7 +33,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Container className='bg'>
       <Router>
-        <NavbarScroller links={navigation.links} blogs={navigation.blogs}/>
         <Routes>
           <Route path='/' element={<App blogs={navigation.blogs}/>} />
           <Route path='/about' element={<About />} />
@@ -44,7 +41,6 @@ ReactDOM.render(
           <Route path='/unions' element={<Unions />} />
           <Route path='/texas' element={<Texas />} />
         </Routes>
-        <Footer />
       </Router>
     </Container>
   </React.StrictMode>,

@@ -2,6 +2,19 @@ import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import '../index.css'
 
+const navigation = {
+  links: [
+    { name: 'Blogs', to: '/#blogs' },
+    { name: 'About', to: '/about' },
+    { name: 'Contact', to: '#contact' }
+  ],
+  blogs: [
+    { name: 'Healthcare', to: '/healthcare', img: 'healthcare.png', animation: 'Healthcare.gif' },
+    { name: 'Mass Incarceration', to: 'mass-incarceration', img: 'mass-incarceration.png', animation: 'mass-incarceration.gif' },
+    { name: 'Unions', to: 'unions', img: 'union.png', animation: 'union.gif' }
+  ]
+}
+
 const Space = styled.div`
   @media screen and (max-width: 1000px) {
       height: 100px;
@@ -288,7 +301,7 @@ const Logo = styled.a`
   align-items: center;
   line-height: 1;
   letter-spacing: 3px;
-  margin: 0 5%;
+  margin: 2% 5%;
 
   &:visited {
     color: #88f;
@@ -307,8 +320,9 @@ const Bg = styled.div`
   background-color: #fc7a5b;
 `
 
-const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {name: string; to: string, img: string}[] }) => {
-  const { links, blogs } = props
+const NavbarScroller = (props: { page?: string }) => {
+  const { links, blogs } = navigation
+  const { page } = props
   const DropdownLinks: any = () => blogs.map((link: {name: string, to: string}) =>
       <li key={link.name}>
         <Link className='navbar shadow dropdown-item' href={link.to}>{link.name}</Link>
@@ -320,6 +334,11 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
       </li>
   )
   const home = { name: 'Home', to: '/' }
+
+  const BgRef = useRef<HTMLDivElement>(null)
+  const NavbarRef = useRef<HTMLDivElement>(null)
+  const rightRef = useRef<HTMLUListElement>(null)
+  const leftRef = useRef<HTMLUListElement>(null)
 
   const hamburgerRef = useRef<HTMLDivElement>(null)
   const icon1 = useRef<HTMLDivElement>(null)
@@ -333,6 +352,23 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
 
   let toggledMobileNav = false
   let toggleBlog = false
+
+  useEffect(() => {
+    if (page && BgRef.current && NavbarRef.current && rightRef.current && leftRef.current) {
+      if (page === 'healthcare') {
+        BgRef.current.style.background = 'black'
+        NavbarRef.current.style.background = 'black'
+        BgRef.current.style.backgroundSize = '40px 40px'
+        NavbarRef.current.style.backgroundSize = '40px 40px'
+        BgRef.current.style.backgroundAttachment = 'fixed'
+        NavbarRef.current.style.backgroundAttachment = 'fixed'
+        BgRef.current.style.backgroundImage = 'linear-gradient(to right, rgba(241,241,241, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(241,241,241, 0.1) 1px, transparent 1px)'
+        NavbarRef.current.style.backgroundImage = 'linear-gradient(to right, rgba(241,241,241, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(241,241,241, 0.1) 1px, transparent 1px)'
+      }
+      rightRef.current.style.display = 'none'
+      leftRef.current.style.display = 'none'
+    }
+  })
 
   function toggleBlogList () {
     toggleBlog = !toggleBlog
@@ -440,18 +476,18 @@ const NavbarScroller = (props: {links: {name: string; to: string}[], blogs: {nam
   )
 
   return (
-      <Bg>
-        <Navbar>
+      <Bg ref={BgRef}>
+        <Navbar ref={NavbarRef}>
             <Logo key='logo' className='logo' href='/'>
               <This>this</This>
               <Pathetic>is pathetic</Pathetic>
             </Logo>
-            <Ul className='left'>
+            <Ul className='left' ref={leftRef}>
               <Li key={home.name}>
                 {makeLink(home, false)}
               </Li>
             </Ul>
-            <RightButtons>
+            <RightButtons ref={rightRef}>
               <NavLinks />
             </RightButtons>
         </Navbar>

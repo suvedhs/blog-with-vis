@@ -1,8 +1,11 @@
 import React from 'react'
+import NavbarScroller from './NavbarScroller'
+import Footer from './Footer'
 
 function About () {
   return (
     <div className="about">
+      <NavbarScroller />
       <div>
         <div>
           <div>
@@ -22,6 +25,7 @@ function About () {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
