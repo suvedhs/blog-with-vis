@@ -353,7 +353,10 @@ const NavbarScroller = (props: { page?: string }) => {
   let toggledMobileNav = false
   let toggleBlog = false
 
+  const useEffectRef = useRef(false)
+
   useEffect(() => {
+    if (useEffectRef.current) { return }
     if (page && BgRef.current && NavbarRef.current && rightRef.current && leftRef.current) {
       if (page === 'healthcare') {
         BgRef.current.style.background = 'black'
@@ -368,6 +371,7 @@ const NavbarScroller = (props: { page?: string }) => {
       rightRef.current.style.display = 'none'
       leftRef.current.style.display = 'none'
     }
+    useEffectRef.current = true
   })
 
   function toggleBlogList () {
@@ -407,6 +411,27 @@ const NavbarScroller = (props: { page?: string }) => {
     }
   }
 
+  function handleNav () {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickNav (event: { target: any }) {
+        if ((navslider.current && !navslider.current.contains(event.target) && toggledMobileNav) || (hamburgerRef.current && hamburgerRef.current.contains(event.target))) {
+          toggleMobileNavbar()
+        }
+      }
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickNav)
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickNav)
+      }
+    }, [navslider])
+  }
+
+  handleNav()
+
   function makeLink (link: {name: string; to: string}, isMobile: boolean) {
     if (link.name === 'Blogs') {
       if (isMobile) {
@@ -441,27 +466,6 @@ const NavbarScroller = (props: { page?: string }) => {
       }
     }
   }
-
-  function handleNav () {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      function handleClickNav (event: { target: any }) {
-        if ((navslider.current && !navslider.current.contains(event.target) && toggledMobileNav) || (hamburgerRef.current && hamburgerRef.current.contains(event.target))) {
-          toggleMobileNavbar()
-        }
-      }
-      // Bind the event listener
-      document.addEventListener('mousedown', handleClickNav)
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickNav)
-      }
-    }, [navslider])
-  }
-
-  handleNav()
 
   const NavLinks: any = () => links.map((link: {name: string, to: string }) =>
       <Li key={link.name}>
