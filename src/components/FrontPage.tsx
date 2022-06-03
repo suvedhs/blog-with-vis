@@ -139,60 +139,69 @@ const FrontPage = (props: any) => {
   let thisHeight = '60%'
   let patheticHeight = '85%'
   let MaskVideo = LogoVideo
-  if (window.innerWidth < 1500) {
-    thisHeight = '50%'
-    patheticHeight = '75%'
-    if (window.innerHeight < 1000) {
-      thisHeight = '60%'
-      patheticHeight = '82%'
+
+  function handleResize () {
+    if (window.innerWidth < 1500) {
+      thisHeight = '50%'
+      patheticHeight = '75%'
+      if (window.innerHeight < 1000) {
+        thisHeight = '60%'
+        patheticHeight = '82%'
+      }
     }
-  }
-  if (window.innerWidth < 1400) {
-    thisHeight = '45%'
-    patheticHeight = '70%'
-  }
-  if (window.innerWidth < 1300) {
-    thisHeight = '50%'
-    patheticHeight = '75%'
-  }
-  if (window.innerWidth < 1200) {
-    thisHeight = '50%'
-    patheticHeight = '67%'
-    if (window.innerHeight < 700) {
-      thisHeight = '60%'
-      patheticHeight = '80%'
+    if (window.innerWidth < 1400) {
+      thisHeight = '45%'
+      patheticHeight = '70%'
     }
-  }
-  if (window.innerWidth < 1000) {
-    thisHeight = '45%'
-    patheticHeight = '67%'
-    MaskVideo = LogoVideoVertical
-    if (window.innerHeight > 1000) {
+    if (window.innerWidth < 1300) {
+      thisHeight = '50%'
+      patheticHeight = '75%'
+    }
+    if (window.innerWidth < 1200) {
+      thisHeight = '50%'
+      patheticHeight = '67%'
+      if (window.innerHeight < 700) {
+        thisHeight = '60%'
+        patheticHeight = '80%'
+      }
+    }
+    if (window.innerWidth < 1000) {
+      thisHeight = '45%'
+      patheticHeight = '67%'
+      MaskVideo = LogoVideoVertical
+      if (window.innerHeight > 1000) {
+        patheticHeight = '60%'
+      }
+    }
+    if (window.innerWidth < 860) {
+      thisHeight = '51%'
+      patheticHeight = '65%'
+    }
+    if (window.innerWidth < 650) {
+      thisHeight = '49%'
+      patheticHeight = '62%'
+    }
+    if (window.innerWidth < 650) {
+      patheticHeight = '60%'
+    }
+    if (window.innerWidth < 550) {
+      patheticHeight = '63%'
+    }
+    if (window.innerWidth < 480) {
+      patheticHeight = '59%'
+      MaskVideo = LogoVideoVertical
+    }
+    if (window.innerWidth < 400) {
+      thisHeight = '51%'
       patheticHeight = '60%'
     }
   }
-  if (window.innerWidth < 860) {
-    thisHeight = '51%'
-    patheticHeight = '65%'
-  }
-  if (window.innerWidth < 650) {
-    thisHeight = '49%'
-    patheticHeight = '62%'
-  }
-  if (window.innerWidth < 650) {
-    patheticHeight = '60%'
-  }
-  if (window.innerWidth < 550) {
-    patheticHeight = '63%'
-  }
-  if (window.innerWidth < 480) {
-    patheticHeight = '59%'
-    MaskVideo = LogoVideoVertical
-  }
-  if (window.innerWidth < 400) {
-    thisHeight = '51%'
-    patheticHeight = '60%'
-  }
+
+  handleResize()
+
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize)
+  // })
 
   return (
       <Logo>
