@@ -100,7 +100,7 @@ const MobileNavbar = styled.nav`
 
 const GreenBackground = styled.div`
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: #2FFFD4;
@@ -121,7 +121,7 @@ const GreenBackground = styled.div`
 `
 
 const Hamburger = styled.div`
-  position: absolute;
+  position: fixed;
   height: 60px;
   width: 60px;
   top: 15px;

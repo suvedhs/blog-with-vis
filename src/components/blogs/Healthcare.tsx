@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   height: 100%;
   width: 300vw;
   overflow-x: visible;
+  overflow-y: hidden;
 `
 
 const Body = styled.div`
@@ -44,6 +45,15 @@ const LineContainer = styled.div`
   }
 `
 
+const Pathetic = styled.div`
+  font-family: Colombo;
+  text-align: center;
+      @media screen and (max-width: 1000px) {
+        font-size: 8vw;
+        margin-top: 15vh;
+    }
+`
+
 const Title = styled.div`
   font-size: 10vw;
   font-family: Colombo;
@@ -53,14 +63,6 @@ const Title = styled.div`
   @media screen and (max-width: 1000px) {
     font-size: 13vw;
   }
-`
-
-const Pathetic = styled.div`
-  font-family: Colombo;
-  text-align: center;
-      @media screen and (max-width: 1000px) {
-        font-size: 9vw;
-    }
 `
 
 const Page = styled.section`
@@ -81,7 +83,7 @@ const Arrows = styled.svg`
   }
 
   #lightGroup path {
-    fill: #FFA16C;
+    fill: #fc7a5b;
   }
 
   #dark1 {
