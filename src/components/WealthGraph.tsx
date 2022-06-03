@@ -9,8 +9,14 @@ const Graph = styled.svg`
   z-index: 6;
   overflow: auto;
 
+  @media screen and (min-width: 1300px) and (max-height: 900px) {
+    top: 98.9vh;
+  }
+  @media screen and (max-width: 1300px) {
+    top: 98.9vh;
+  }
   @media screen and (max-width: 1200px) {
-    top: 98vh;
+    top: 97.9vh;
   }
   @media screen and (max-width: 1000px) {
     top: 92.5vh;
@@ -22,16 +28,16 @@ const Graph = styled.svg`
     top: 98.9vh;
   }
   @media screen and (max-width: 900px) and (max-height: 1200px) {
-    top: 89vh;
+    top: 88.9vh;
   }
   @media screen and (max-width: 800px) {
     top: 88.9vh;
   }
   @media screen and (max-width: 450px) {
-    top: 88.9vh;
+    top: 98.9vh;
   }
   @media screen and (max-width: 380px) {
-    top: 89vh;
+    top: 98.9vh;
   }
 
 `
@@ -42,6 +48,14 @@ const Green = styled.path`
   &:hover {
     filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
     transition: all 0.1s ease-out;
+  }
+
+  @media screen and (max-width: 450px) {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+
+    &:hover {
+      
+    }
   }
 `
 
@@ -101,9 +115,9 @@ const Popup1 = styled.div`
     width: 150px;
     height: 55px;
     top: 95vh;
-  }
+  } 
   @media screen and (max-width: 450px) {
-    top: 90vh;
+    top: 101vh;
   }
   @media screen and (max-width: 300px) {
     opacity: 0;

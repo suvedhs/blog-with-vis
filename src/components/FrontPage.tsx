@@ -9,6 +9,9 @@ const Logo = styled.div`
 
 const This = styled.text`
     font-size: 32vw;
+    @media screen and (min-width: 1300px) and (max-height: 1000px) {
+      font-size: 32vw;
+    }
     @media screen and (max-width: 1000px) {
       font-size: 45vw;
     }
@@ -44,6 +47,9 @@ const MaskSvg = styled.svg`
     @media screen and (max-width: 950px) and (max-height: 1400px) {
       top: 7vh;
     }
+    @media screen and (max-width: 500px) {
+      height: 93vh;
+    }
 
   `
 
@@ -53,7 +59,7 @@ const Tagline = styled.div`
     font-family: 'Bitter', serif;
     position: absolute;
     text-align: center;
-    top: 90vh;
+    top: 89vh;
     left: 0; 
     right: 0;
     margin-left: auto; 
@@ -136,6 +142,10 @@ const FrontPage = (props: any) => {
   if (window.innerWidth < 1500) {
     thisHeight = '50%'
     patheticHeight = '75%'
+    if (window.innerHeight < 1000) {
+      thisHeight = '60%'
+      patheticHeight = '82%'
+    }
   }
   if (window.innerWidth < 1400) {
     thisHeight = '45%'

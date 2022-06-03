@@ -121,7 +121,7 @@ const GreenBackground = styled.div`
 `
 
 const Hamburger = styled.div`
-  position: fixed;
+  position: absolute;
   height: 60px;
   width: 60px;
   top: 15px;
@@ -358,7 +358,7 @@ const NavbarScroller = (props: { page?: string }) => {
 
   useEffect(() => {
     if (useEffectRef.current) { return }
-    if (page && BgRef.current && NavbarRef.current && rightRef.current && leftRef.current) {
+    if (page && BgRef.current && NavbarRef.current && rightRef.current && leftRef.current && hamburgerRef.current) {
       if (page === 'healthcare') {
         BgRef.current.style.background = 'black'
         NavbarRef.current.style.background = 'black'
@@ -368,6 +368,7 @@ const NavbarScroller = (props: { page?: string }) => {
         NavbarRef.current.style.backgroundAttachment = 'fixed'
         BgRef.current.style.backgroundImage = 'linear-gradient(to right, rgba(241,241,241, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(241,241,241, 0.1) 1px, transparent 1px)'
         NavbarRef.current.style.backgroundImage = 'linear-gradient(to right, rgba(241,241,241, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(241,241,241, 0.1) 1px, transparent 1px)'
+        hamburgerRef.current.style.position = 'fixed'
       }
       rightRef.current.style.display = 'none'
       leftRef.current.style.display = 'none'

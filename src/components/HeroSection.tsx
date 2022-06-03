@@ -46,7 +46,10 @@ const Intro = styled.div`
     margin-top: 55%;
   }
   @media screen and (max-width: 450px) {
-    margin-top: 60%;
+    margin-top: 75%;
+  }
+  @media screen and (max-width: 450px) and (min-height: 750px) {
+    margin-top: 85%;
   }
 `
 
