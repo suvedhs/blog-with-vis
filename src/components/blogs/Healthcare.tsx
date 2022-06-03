@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import BlogpostTitle from './BlogpostTitle'
 import NavbarScroller from '../NavbarScroller'
 
 const Wrapper = styled.div`
@@ -10,17 +9,19 @@ const Wrapper = styled.div`
     linear-gradient(to right, rgba(241,241,241, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(241,241,241, 0.1) 1px, transparent 1px);
   background-attachment: fixed;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 `
 
 const Body = styled.div`
-  width: 90%;
   display: flex;
   flex-direction: column;
   font-family: 'Bitter', serif;
   color: red;
-  margin: 5%;
-  height: 200vh;
   align-items: center;
+  width: 200vw;
+  flex: 1 1 auto;
 `
 
 const LineContainer = styled.div`
@@ -41,6 +42,21 @@ const LineContainer = styled.div`
       stroke-width: 5;
     }
   }
+`
+
+const Title = styled.div`
+  font-size: 70px;
+  text-align: center;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 13vw;
+  }
+`
+
+const Pathetic = styled.div`
+    @media screen and (max-width: 1000px) {
+        font-size: 9vw;
+    }
 `
 
 function Healthcare () {
@@ -74,7 +90,8 @@ function Healthcare () {
               </svg>
             </LineContainer>
             <Body>
-              <BlogpostTitle title='American Healthcare'/>
+              <Pathetic className='big'>The Pathetic State of</Pathetic>
+              <Title>American Healthcare</Title>
               <p className='small'>
                 I&apos;m still doing research on this topic. Bear with me, there is a lot of research to be done.
               </p>

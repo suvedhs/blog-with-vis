@@ -8,6 +8,7 @@
 
 html {
     height: 100%;
+    width: fit-content;
     scroll-behavior: smooth;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -22,7 +23,7 @@ html {
 body {
     margin: 0px;
     height: 100%;
-    max-width: 2000px;
+    width: 100%;
     margin: auto;
 }
 
@@ -46,6 +47,11 @@ body {
   padding: 5px;
   font-family: 'Bitter', serif;
   line-height: 2em;
+}
+
+.nopadding {
+  padding: 0;
+  margin: 0;
 }
 
 .link {

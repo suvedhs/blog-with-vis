@@ -301,7 +301,7 @@ const Logo = styled.a`
   align-items: center;
   line-height: 1;
   letter-spacing: 3px;
-  margin: 2% 5%;
+  margin: 2vh 5vw;
 
   &:visited {
     color: #88f;
@@ -318,6 +318,7 @@ const Pathetic = styled.span`
 
 const Bg = styled.div`
   background-color: #fc7a5b;
+  flex: 0 1 auto;
 `
 
 const NavbarScroller = (props: { page?: string }) => {

@@ -26,7 +26,8 @@ const navigation = {
 }
 
 const Container = styled.div`
-  position: relative
+  position: relative;
+  height: 100%;
 `
 
 ReactDOM.render(
