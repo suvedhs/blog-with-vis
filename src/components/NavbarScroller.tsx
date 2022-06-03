@@ -406,7 +406,9 @@ const NavbarScroller = (props: { page?: string }) => {
         icon1.current.className = icon1.current.className.substring(0, icon1.current.className.length - 2)
         icon2.current.className = icon2.current.className.substring(0, icon2.current.className.length - 2)
         icon3.current.className = icon3.current.className.substring(0, icon3.current.className.length - 2)
-        hamburgerRef.current.style.position = 'absolute'
+        if (!page) {
+          hamburgerRef.current.style.position = 'absolute'
+        }
         navslider.current.className = navslider.current.className.substring(0, navslider.current.className.length - 5)
         orangeRef.current.className = orangeRef.current.className.substring(0, orangeRef.current.className.length - 6)
       }
