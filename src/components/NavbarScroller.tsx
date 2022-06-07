@@ -28,7 +28,7 @@ const Navbar = styled.nav`
   display: flex;
   align-items: center;
   position: sticky;
-  z-index: 1000;
+  z-index: 2000;
   top: 0;
   height: 18vh;
   a {
@@ -56,7 +56,6 @@ const MobileNavbar = styled.nav`
   opacity: 0;
   transition: all 600ms cubic-bezier(.62,.04,.3,1.56);
   transition-delay: 100ms;
-  overflow-y: scroll;
 
   ul {
     position: fixed;
@@ -325,7 +324,7 @@ const BlogListContainerMobile = styled.div`
     padding: 0;
     margin-top: 0;
     margin-left: 5%;
-    z-index: 100;
+    z-index: 2003;
     transition: all 0.2s ease-in-out;
   }
 `
@@ -355,8 +354,6 @@ const Pathetic = styled.span`
 `
 
 const Bg = styled.div`
-  height: 100%;
-  overflow-y: scroll;
   background-color: #fc7a5b;
 `
 
