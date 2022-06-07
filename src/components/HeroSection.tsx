@@ -35,22 +35,10 @@ const Intro = styled.div`
   width: 80%;
   display: flex;
   font-family: 'Bitter', serif;
-  margin: 30% 5% 0 5%;
+  margin: -5% 5% 0 5%;
   justify-content: left;
   align-items: center;
   z-index: 2;
-  @media screen and (max-width: 950px) {
-    margin-top: 40%;
-  }
-  @media screen and (max-width: 550px) {
-    margin-top: 55%;
-  }
-  @media screen and (max-width: 450px) {
-    margin-top: 75%;
-  }
-  @media screen and (max-width: 450px) and (min-height: 750px) {
-    margin-top: 85%;
-  }
 `
 
 const HeroSection = (props: any) => {
@@ -60,7 +48,7 @@ const HeroSection = (props: any) => {
     <Intro className='rounded'>
         <Text>
             <div className='big'>Hi. I&apos;m Suvedh.</div>
-            <div className='big'>A Leftist.</div>
+            <div className='big'>A Democratic Socialist.</div>
             <div className='small'>I&apos;m also a <FancyLink link={devLink} /> and <FancyLink link={funLink}/> with a newfound passion for <Italics>data visualization</Italics>. I blog about topics in American politics using analysis from publicly available data. The green line above represents the share of US wealth that the bottom 50% have owned over time, from 1980 to 2015.</div>
         </Text>
     </Intro>

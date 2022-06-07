@@ -3,13 +3,11 @@ import styled from 'styled-components'
 import '../index.css'
 
 const Graph = styled.svg`
-  position: absolute;
-  left: -10px;
-  top: 99vh;
   z-index: 6;
   overflow: auto;
+  width: 100%;
 
-  @media screen and (min-width: 1300px) and (max-height: 900px) {
+  /* @media screen and (min-width: 1300px) and (max-height: 900px) {
     top: 98.9vh;
   }
   @media screen and (max-width: 1300px) {
@@ -38,7 +36,7 @@ const Graph = styled.svg`
   }
   @media screen and (max-width: 380px) {
     top: 98.9vh;
-  }
+  } */
 
 `
 
@@ -109,19 +107,24 @@ const Popup1 = styled.div`
     top: 98vh;
     left: 45vw;
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 600px) {
     opacity: 1;
     font-size: 0.8em;
     width: 150px;
     height: 55px;
+    top: 101vh;
+  } 
+  @media screen and (max-width: 500px) {
     top: 95vh;
   } 
   @media screen and (max-width: 450px) {
     top: 101vh;
   }
   @media screen and (max-width: 300px) {
-    opacity: 0;
-    visibility: hidden;
+    display: none;
+  }
+  @media screen and (max-height: 400px) {
+    display: none;
   }
   
 `

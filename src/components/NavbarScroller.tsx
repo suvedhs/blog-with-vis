@@ -16,8 +16,8 @@ const navigation = {
 }
 
 const Space = styled.div`
-  @media screen and (max-width: 1000px) {
-      height: 100px;
+  @media screen and (max-width: 1050px) {
+      height: 10vh;
   }
 `
 
@@ -26,15 +26,17 @@ const Navbar = styled.nav`
   font-weight: 600;
   background: #fc7a5b;
   display: flex;
+  align-items: center;
   position: sticky;
   z-index: 1000;
   top: 0;
+  height: 18vh;
   a {
     text-decoration: none;
     color: #fc7a5b;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1050px) {
       display: none;
   }
 `
@@ -52,14 +54,15 @@ const MobileNavbar = styled.nav`
   width: 0%;
   z-index: 51;
   opacity: 0;
-  overflow: auto;
   transition: all 600ms cubic-bezier(.62,.04,.3,1.56);
   transition-delay: 100ms;
+  overflow-y: scroll;
 
   ul {
     position: fixed;
     margin-top: 30%;
     width: 45%;
+    
     li {
       font-family: 'Nunito', sans-serif;
       font-weight: 600;
@@ -71,11 +74,25 @@ const MobileNavbar = styled.nav`
       &:before {
         
       }
+
+      @media screen and (max-height: 350px) {
+        margin-top: 0;
+      }
     }
   }
 
-  @media screen and (max-width: 1000px) {
-      display: flex;
+  @media screen and (max-width: 1050px) {
+    display: flex;
+  }
+  @media screen and (min-width: 600px) and (max-aspect-ratio: 1/1) {
+    display: flex;
+    font-size: 4vw;
+  }
+
+  @media screen and (min-width: 600px) and (min-aspect-ratio: 1/1) {    
+    ul {
+      margin-top: 15%;
+    }
   }
 
   @keyframes slideIn {
@@ -110,7 +127,7 @@ const GreenBackground = styled.div`
   transition-delay: 50ms;
   z-index: 50;
   opacity: 1;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1050px) {
       display: flex;
   }
 
@@ -162,8 +179,27 @@ const Hamburger = styled.div`
     opacity: 0;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1050px) {
       display: block;
+  }
+
+  @media screen and (min-width: 600px) {
+    top: 30px;
+    left: 30px;
+    .icon-1, .icon-2, .icon-3 {
+      width: 45px;
+      height: 5px;
+    }
+    .icon-1 {
+      transform: translateY(-12px);
+    }
+    .a {
+      transform: rotate(40deg);
+    }
+
+    .icon-3 {
+      transform: translateY(12px);
+    }
   }
 `
 
@@ -235,7 +271,6 @@ const MobileLink = styled.a`
   font-weight: 400;
   cursor: pointer;
   line-height: 0%;
-  padding-right: 30%;
 
   i {
     transition: transform ease 0.5s, -webkit-transform ease 0.5s;
@@ -255,6 +290,9 @@ const MobileLink = styled.a`
   }
 
   @media screen and (max-width: 350px) {
+    font-size: 15px;
+  }
+  @media screen and (max-height: 350px) {
     font-size: 15px;
   }
 `
@@ -317,8 +355,9 @@ const Pathetic = styled.span`
 `
 
 const Bg = styled.div`
+  height: 100%;
+  overflow-y: scroll;
   background-color: #fc7a5b;
-  flex: 0 1 auto;
 `
 
 const NavbarScroller = (props: { page?: string }) => {
@@ -400,6 +439,7 @@ const NavbarScroller = (props: { page?: string }) => {
         icon2.current.className += ' b'
         icon3.current.className += ' c'
         hamburgerRef.current.style.position = 'fixed'
+        document.body.style.position = 'fixed'
         navslider.current.className += ' show'
         orangeRef.current.className += ' slide'
       } else {
@@ -409,6 +449,7 @@ const NavbarScroller = (props: { page?: string }) => {
         if (!page) {
           hamburgerRef.current.style.position = 'absolute'
         }
+        document.body.style.position = 'inherit'
         navslider.current.className = navslider.current.className.substring(0, navslider.current.className.length - 5)
         orangeRef.current.className = orangeRef.current.className.substring(0, orangeRef.current.className.length - 6)
       }
@@ -499,7 +540,7 @@ const NavbarScroller = (props: { page?: string }) => {
               <NavLinks />
             </RightButtons>
         </Navbar>
-        <Space />
+        <Space></Space>
         <Hamburger ref={hamburgerRef}>
           <div className="icon-1" ref={icon1} />
           <div className="icon-2" ref={icon2} />
