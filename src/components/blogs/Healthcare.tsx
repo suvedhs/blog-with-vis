@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   background-attachment: fixed;
   display: flex;
   flex-flow: column;
-  height: 100%;
+  height: 100vh;
   width: 300vw;
   overflow-x: visible;
   overflow-y: hidden;
@@ -23,6 +23,12 @@ const Body = styled.div`
   font-family: 'Bitter', serif;
   color: red;
   flex: 1 1 auto;
+  height: 82vh;
+  overflow-y: hidden;
+
+  @media screen and (max-width: 1050px) {
+    height: 90vh;
+  }
 `
 
 const LineContainer = styled.div`
@@ -39,7 +45,7 @@ const LineContainer = styled.div`
     width: 100%;
     stroke-width: 3;
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 1050px) {
       stroke-width: 5;
     }
   }
