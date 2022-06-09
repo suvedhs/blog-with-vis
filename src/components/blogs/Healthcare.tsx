@@ -11,10 +11,7 @@ const Wrapper = styled.div`
   background-attachment: fixed;
   display: flex;
   flex-flow: column;
-  height: 100vh;
   width: 300vw;
-  overflow-x: visible;
-  overflow-y: hidden;
 `
 
 const Body = styled.div`
@@ -24,7 +21,6 @@ const Body = styled.div`
   color: red;
   flex: 1 1 auto;
   height: 82vh;
-  overflow-y: hidden;
 
   @media screen and (max-width: 1050px) {
     height: 90vh;
@@ -37,7 +33,6 @@ const LineContainer = styled.div`
   left: 0;
   width: 100%;
   text-align: center;
-  overflow: hidden;
   transform: translate(0, -50%);
 
   svg {
@@ -71,12 +66,11 @@ const Title = styled.div`
   }
 `
 
-const Page = styled.section`
-  width: 100vw;
-  height: 100%;
+const Page = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100vw;
 `
 
 const Arrows = styled.svg`

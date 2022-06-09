@@ -6,38 +6,6 @@ const Graph = styled.svg`
   z-index: 6;
   overflow: auto;
   width: 100%;
-
-  /* @media screen and (min-width: 1300px) and (max-height: 900px) {
-    top: 98.9vh;
-  }
-  @media screen and (max-width: 1300px) {
-    top: 98.9vh;
-  }
-  @media screen and (max-width: 1200px) {
-    top: 97.9vh;
-  }
-  @media screen and (max-width: 1000px) {
-    top: 92.5vh;
-  }
-  @media screen and (max-width: 950px) and (max-height: 1400px) {
-    top: 88.9vh;
-  }
-  @media screen and (max-width: 900px) and (max-height: 1300px) {
-    top: 98.9vh;
-  }
-  @media screen and (max-width: 900px) and (max-height: 1200px) {
-    top: 88.9vh;
-  }
-  @media screen and (max-width: 800px) {
-    top: 88.9vh;
-  }
-  @media screen and (max-width: 450px) {
-    top: 98.9vh;
-  }
-  @media screen and (max-width: 380px) {
-    top: 98.9vh;
-  } */
-
 `
 
 const Green = styled.path`
