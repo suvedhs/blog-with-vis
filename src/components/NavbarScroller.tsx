@@ -384,6 +384,8 @@ const NavbarScroller = (props: { page?: string }) => {
   const navslider = useRef<HTMLDivElement>(null)
   const orangeRef = useRef<HTMLDivElement>(null)
 
+  const logoRef = useRef<HTMLAnchorElement>(null)
+
   const arrow = useRef<HTMLElement>(null)
   const bloglistref = useRef<HTMLUListElement>(null)
 
@@ -394,9 +396,10 @@ const NavbarScroller = (props: { page?: string }) => {
 
   useEffect(() => {
     if (useEffectRef.current) { return }
-    if (page && BgRef.current && NavbarRef.current && rightRef.current && leftRef.current && hamburgerRef.current) {
+    if (page && BgRef.current && NavbarRef.current && rightRef.current && leftRef.current && hamburgerRef.current && logoRef.current) {
       if (page === 'healthcare') {
         BgRef.current.style.background = 'black'
+        BgRef.current.style.width = '100vw'
         NavbarRef.current.style.background = 'black'
         BgRef.current.style.backgroundSize = '40px 40px'
         NavbarRef.current.style.backgroundSize = '40px 40px'
@@ -405,6 +408,7 @@ const NavbarScroller = (props: { page?: string }) => {
         BgRef.current.style.backgroundImage = 'linear-gradient(to right, rgba(241,241,241, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(241,241,241, 0.1) 1px, transparent 1px)'
         NavbarRef.current.style.backgroundImage = 'linear-gradient(to right, rgba(241,241,241, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(241,241,241, 0.1) 1px, transparent 1px)'
         hamburgerRef.current.style.position = 'fixed'
+        logoRef.current.style.position = 'fixed'
       }
       rightRef.current.style.display = 'none'
       leftRef.current.style.display = 'none'
@@ -524,7 +528,7 @@ const NavbarScroller = (props: { page?: string }) => {
   return (
       <Bg ref={BgRef}>
         <Navbar ref={NavbarRef}>
-            <Logo key='logo' className='logo' href='/'>
+            <Logo ref={logoRef} key='logo' className='logo' href='/'>
               <This>this</This>
               <Pathetic>is pathetic</Pathetic>
             </Logo>

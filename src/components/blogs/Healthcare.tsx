@@ -79,6 +79,8 @@ const Page = styled.div`
 `
 
 const PageContent = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   margin-left: 3%;
   margin-right: 3%;
@@ -96,6 +98,26 @@ const P = styled.p`
 const Statement = styled.div`
   font-family: Colombo;
   font-size: 3.5em;
+  text-align: center;
+  line-height: 0.2;
+`
+
+const Huge = styled.span`
+  font-size: 4em;
+`
+
+const Mid = styled.span`
+  font-size: 1.75em;
+  animation: grow 5s;
+
+  @keyframes grow {
+    0% {
+      font-size: 1em;
+    }
+    100% {
+      font-size: 1.75em;
+    }
+  }
 `
 
 const Arrows = styled.svg`
@@ -182,6 +204,7 @@ function Healthcare () {
 
   useEffect(() => {
     if (useEffectRef.current) { return }
+    document.body.style.overflowY = 'hidden'
     if (pathRef.current) {
       const pathLength = pathRef.current.getTotalLength()
       pathRef.current.style.strokeDasharray = pathLength + ''
@@ -235,7 +258,7 @@ function Healthcare () {
                 <PageContent>
                   <P>We have the world&apos;s best doctors, schools, and facilities. We develop cutting edge technology in the medical industry. Foreigners come to America for advanced surgeries. Yet, America has one of the worst healthcare systems in the world, especially for a developed country.</P>
                   <P>The first issue:</P>
-                  <Statement>Americans spend BIG on healthcare.</Statement>
+                  <Statement>Americans<Mid> spend </Mid><Huge>BIG</Huge></Statement>
                 </PageContent>
               </Page>
               <Page>
