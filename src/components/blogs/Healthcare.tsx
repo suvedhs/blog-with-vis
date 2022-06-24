@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   width: 300vw;
+  overflow-y: hidden;
 `
 
 const Body = styled.div`
