@@ -1,6 +1,10 @@
 import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import NavbarScroller from '../NavbarScroller'
+import { DSVRowArray } from 'd3'
+import * as d3 from 'd3'
+
+type CSVData = DSVRowArray | null
 
 const Wrapper = styled.div`
   background-color: black;
@@ -30,7 +34,7 @@ const Body = styled.div`
 
 const LineContainer = styled.div`
   position: fixed;
-  top: 75%;
+  top: 79%;
   left: 0;
   width: 100%;
   text-align: center;
@@ -72,6 +76,26 @@ const Page = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100vw;
+`
+
+const PageContent = styled.div`
+  height: 100%;
+  margin-left: 3%;
+  margin-right: 3%;
+  align-items: center;
+  text-align: center;
+`
+
+const P = styled.p`
+  font-size: 1.5em;
+  margin-left: 10%;
+  margin-right: 10%;
+  line-height: 1.2;
+`
+
+const Statement = styled.div`
+  font-family: Colombo;
+  font-size: 3.5em;
 `
 
 const Arrows = styled.svg`
@@ -154,6 +178,7 @@ function Healthcare () {
   const pathRef = useRef<SVGLineElement>(null)
   const useEffectRef = useRef(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
+  let perCapitaData: CSVData = null
 
   useEffect(() => {
     if (useEffectRef.current) { return }
@@ -170,6 +195,10 @@ function Healthcare () {
         }
       })
     }
+    d3.csv(`${process.env.PUBLIC_URL}/datasets/OECD-health-expenditure-and-financing.csv`).then(res => {
+      perCapitaData = res
+      console.log(perCapitaData)
+    })
     useEffectRef.current = true
   })
 
@@ -201,6 +230,13 @@ function Healthcare () {
                 </Arrows>
 
                 <ScrollRight className='small'>scroll right</ScrollRight>
+              </Page>
+              <Page>
+                <PageContent>
+                  <P>We have the world&apos;s best doctors, schools, and facilities. We develop cutting edge technology in the medical industry. Foreigners come to America for advanced surgeries. Yet, America has one of the worst healthcare systems in the world, especially for a developed country.</P>
+                  <P>The first issue:</P>
+                  <Statement>Americans spend BIG on healthcare.</Statement>
+                </PageContent>
               </Page>
               <Page>
                 <p>
