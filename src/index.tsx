@@ -27,7 +27,7 @@ const navigation = {
 
 const Container = styled.div`
   position: relative;
-  height: 100vh;
+  height: 100%;
 `
 
 ReactDOM.render(
