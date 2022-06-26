@@ -90,32 +90,85 @@ const PageContent = styled.div`
 
 const P = styled.p`
   font-size: 1.5em;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin: 0 10% 1vh 10%;
   line-height: 1.2;
 `
 
-const Statement = styled.div`
+const Statement = styled.ul`
   font-family: Colombo;
-  font-size: 3.5em;
+  font-size: 50px;
   text-align: center;
-  line-height: 0.2;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  line-height: 1;
+  margin: 0;
+  min-height: 30vh;
+  align-items: center;
+
+  li {
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+    vertical-align: middle;
+    align-self: center;
+    min-width: 25vw;
+  }
 `
 
-const Huge = styled.span`
-  font-size: 4em;
+const Left = styled.ul`
+  list-style: none;
+  margin: 0;
+  margin-left: 2vw;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
 `
 
-const Mid = styled.span`
-  font-size: 1.75em;
-  animation: grow 5s;
+const Huge = styled.li`
+  font-size: 0;
+  line-height: 0.9;
+  margin-right: 2vw;
 
-  @keyframes grow {
+  @keyframes growHuge {
     0% {
-      font-size: 1em;
+      font-size: 0em;
     }
     100% {
-      font-size: 1.75em;
+      font-size: 5em;
+    }
+  }
+`
+
+const Mid = styled.li`
+  font-size: 0;
+  margin-top: 1vh;
+
+  @keyframes growMid {
+    0% {
+      font-size: 0em;
+    }
+    100% {
+      font-size: 2.4em;
+    }
+  }
+`
+
+const Small = styled.li`
+  font-size: 0;
+  margin-top: 3vh;
+  @keyframes growSmall {
+    0% {
+      font-size: 0em;
+    }
+    100% {
+      font-size: 1.25em;
     }
   }
 `
@@ -199,12 +252,15 @@ const ScrollRight = styled.p`
 function Healthcare () {
   const pathRef = useRef<SVGLineElement>(null)
   const useEffectRef = useRef(false)
+  const animateBigRef = useRef(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const bigRef = useRef<HTMLLIElement>(null)
+  const midRef = useRef<HTMLLIElement>(null)
+  const smallRef = useRef<HTMLLIElement>(null)
   let perCapitaData: CSVData = null
 
   useEffect(() => {
     if (useEffectRef.current) { return }
-    document.body.style.overflowY = 'hidden'
     if (pathRef.current) {
       const pathLength = pathRef.current.getTotalLength()
       pathRef.current.style.strokeDasharray = pathLength + ''
@@ -215,6 +271,12 @@ function Healthcare () {
           const scrollPercentage = window.pageXOffset / (wrapperRef.current.scrollWidth - window.innerWidth)
           const drawLength = pathLength * scrollPercentage
           pathRef.current.style.strokeDashoffset = (pathLength - drawLength) + ''
+        }
+        if (bigRef.current && !animateBigRef.current && smallRef.current && midRef.current && window.pageXOffset >= window.innerWidth) {
+          animateBigRef.current = true
+          smallRef.current.className += ' blockbuster growSmall'
+          midRef.current.className += ' blockbuster growMid'
+          bigRef.current.className += ' blockbuster growHuge'
         }
       })
     }
@@ -258,74 +320,76 @@ function Healthcare () {
                 <PageContent>
                   <P>We have the world&apos;s best doctors, schools, and facilities. We develop cutting edge technology in the medical industry. Foreigners come to America for advanced surgeries. Yet, America has one of the worst healthcare systems in the world, especially for a developed country.</P>
                   <P>The first issue:</P>
-                  <Statement>Americans<Mid> spend </Mid><Huge>BIG</Huge></Statement>
+                  <Statement><li><Left><Small ref={smallRef}>Americans</Small><Mid ref={midRef}>spend</Mid></Left></li><Huge ref= {bigRef}>BIG</Huge></Statement>
                 </PageContent>
               </Page>
               <Page>
-                <p>
-                  I&apos;m still doing research on this topic. Bear with me, there is a lot of research to be done.
-                </p>
-                <p>Some topics I intend to cover include:</p>
-                <ul>
-                  <li>
-                    How the US compares to other countries in terms of:
-                    <ul>
-                      <li>
-                        Health care cost
-                      </li>
-                      <li>
-                        Coverage
-                      </li>
-                      <li>
-                        Life expectancy
-                      </li>
-                      <li>
-                        Child Mortality
-                      </li>
-                      <li>
-                        ... and more!
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    What are other countries doing so well
-                  </li>
-                  <li>
-                    Preventitive care
-                  </li>
-                  <li>
-                    Medicare and Medicaid
-                    <br />
-                    Side note - apparently medicare-negotiated hospital costs are more than the same procedures in other countries?
-                  </li>
-                  <li>
-                    Various proposed solutions in modern history (and their consequences)
-                    <ul>
-                      <li>
-                        The Affordable Care Act (Obamacare, ACA)
-                      </li>
-                      <li>
-                        Medicare for All
-                      </li>
-                      <li>
-                        Medicare for All... who want it?
-                      </li>
-                      <li>
-                        The American Health Care Act (2017 GOP plan)
-                      </li>
-                    </ul>
-                    And also how they compare to the specific plans from other top tier healthcare countries
-                  </li>
-                  <li>
-                    a brief overview of political contributions from healthcare companies
-                  </li>
-                  <li>
-                    the role American hospitals play in this
-                  </li>
-                  <li>Further analytics by State, by County</li>
-                  <li>TEXAS healthcare</li>
-                  <li>correlated stats on cancer, crime, education, etc</li>
-                </ul>
+                <PageContent>
+                  <p>
+                    I&apos;m still doing research on this topic. Bear with me, there is a lot of research to be done.
+                  </p>
+                  <p>Some topics I intend to cover include:</p>
+                  <ul>
+                    <li>
+                      How the US compares to other countries in terms of:
+                      <ul>
+                        <li>
+                          Health care cost
+                        </li>
+                        <li>
+                          Coverage
+                        </li>
+                        <li>
+                          Life expectancy
+                        </li>
+                        <li>
+                          Child Mortality
+                        </li>
+                        <li>
+                          ... and more!
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      What are other countries doing so well
+                    </li>
+                    <li>
+                      Preventitive care
+                    </li>
+                    <li>
+                      Medicare and Medicaid
+                      <br />
+                      Side note - apparently medicare-negotiated hospital costs are more than the same procedures in other countries?
+                    </li>
+                    <li>
+                      Various proposed solutions in modern history (and their consequences)
+                      <ul>
+                        <li>
+                          The Affordable Care Act (Obamacare, ACA)
+                        </li>
+                        <li>
+                          Medicare for All
+                        </li>
+                        <li>
+                          Medicare for All... who want it?
+                        </li>
+                        <li>
+                          The American Health Care Act (2017 GOP plan)
+                        </li>
+                      </ul>
+                      And also how they compare to the specific plans from other top tier healthcare countries
+                    </li>
+                    <li>
+                      a brief overview of political contributions from healthcare companies
+                    </li>
+                    <li>
+                      the role American hospitals play in this
+                    </li>
+                    <li>Further analytics by State, by County</li>
+                    <li>TEXAS healthcare</li>
+                    <li>correlated stats on cancer, crime, education, etc</li>
+                  </ul>
+                </PageContent>
               </Page>
             </Body>
           </Wrapper>

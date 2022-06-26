@@ -9,6 +9,8 @@ import Footer from './Footer'
 function App (props: {blogs: {name: string; to: string; img: string, animation: string}[]}) {
   const { blogs } = props
 
+  document.body.style.overflowY = 'visible'
+
   return (
     <div>
       <NavbarScroller />
