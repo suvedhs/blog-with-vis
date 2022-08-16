@@ -69,6 +69,7 @@ const MobileNavbar = styled.nav`
       font-size: 24px;
       margin-top: 25px;
       letter-spacing: 1.7px;
+      display: none;
       
       &:before {
         
@@ -111,6 +112,11 @@ const MobileNavbar = styled.nav`
   &.show {
     width: 60%;
     opacity: 1;
+    display: flex;
+
+    ul li {
+      display: block;
+    }
   }
 `
 
@@ -357,9 +363,9 @@ const Bg = styled.div`
   background-color: #fc7a5b;
 `
 
-const NavbarScroller = (props: { page?: string }) => {
+const NavbarScroller = (props: { blogPostPageName?: string }) => {
   const { links, topics } = navigation
-  const { page } = props
+  const { blogPostPageName } = props
   const DropdownLinks: any = () => topics.map((link: {name: string, to: string}) =>
       <li key={link.name}>
         <Link className='navbar shadow dropdown-item' href={link.to}>{link.name}</Link>
@@ -396,8 +402,8 @@ const NavbarScroller = (props: { page?: string }) => {
 
   useEffect(() => {
     if (useEffectRef.current) { return }
-    if (page && BgRef.current && NavbarRef.current && rightRef.current && leftRef.current && hamburgerRef.current && logoRef.current) {
-      if (page === 'healthcare') {
+    if (blogPostPageName && BgRef.current && NavbarRef.current && rightRef.current && leftRef.current && hamburgerRef.current && logoRef.current) {
+      if (blogPostPageName === 'healthcare') {
         BgRef.current.style.background = 'black'
         BgRef.current.style.width = '100vw'
         NavbarRef.current.style.background = 'black'
@@ -447,7 +453,7 @@ const NavbarScroller = (props: { page?: string }) => {
         icon1.current.className = icon1.current.className.substring(0, icon1.current.className.length - 2)
         icon2.current.className = icon2.current.className.substring(0, icon2.current.className.length - 2)
         icon3.current.className = icon3.current.className.substring(0, icon3.current.className.length - 2)
-        if (!page) {
+        if (!blogPostPageName) {
           hamburgerRef.current.style.position = 'absolute'
         }
         document.body.style.position = 'inherit'
