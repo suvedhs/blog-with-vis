@@ -114,7 +114,11 @@ body {
   border: 2px;
   border-color: #88f;
   border-style: solid;
+}
 
+.shadow.orange {
+  box-shadow: 10px 10px #fc7a5b;
+  border-color: #fc7a5b;
 }
 
 .shadow:hover {
@@ -122,6 +126,10 @@ body {
   box-shadow: 12px 15px #88f;
   top: -5px;
   left: -2px;
+}
+
+.shadow.orange:hover {
+  box-shadow: 12px 15px #fc7a5b;
 }
 
 .arrow {
