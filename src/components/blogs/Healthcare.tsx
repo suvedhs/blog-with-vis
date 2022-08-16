@@ -272,7 +272,6 @@ function Healthcare () {
       pathRef.current.style.strokeDasharray = pathLength + ''
       pathRef.current.style.strokeDashoffset = '' + pathLength
       window.addEventListener('scroll', () => {
-        console.log(window.pageXOffset)
         if (pathRef.current && wrapperRef.current && bodyRef.current) {
           const scrollPercentage = window.pageXOffset / (wrapperRef.current.scrollWidth - window.innerWidth)
           const drawLength = pathLength * scrollPercentage
