@@ -23,8 +23,8 @@ const Main = styled.div`
   }
 `
 
-function App (props: {blogs: {name: string; to: string; img: string, animation: string}[]}) {
-  const { blogs } = props
+function App (props: {topics: {name: string; to: string; img: string, animation: string}[]}) {
+  const { topics } = props
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     setLoading(false)
@@ -42,7 +42,7 @@ function App (props: {blogs: {name: string; to: string; img: string, animation: 
                 <FrontPage />
                 <WealthGraph />
                 <HeroSection />
-                <BlogList blogs = {blogs} />
+                <BlogList topics = {topics} />
                 <Footer />
               </Main>
             )

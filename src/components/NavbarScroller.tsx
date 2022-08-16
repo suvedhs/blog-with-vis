@@ -4,11 +4,11 @@ import '../index.css'
 
 const navigation = {
   links: [
-    { name: 'Blogs', to: '/#blogs' },
+    { name: 'Topics', to: '/#topics' },
     { name: 'About', to: '/about' },
     { name: 'Contact', to: '#contact' }
   ],
-  blogs: [
+  topics: [
     { name: 'Healthcare', to: '/healthcare', img: 'healthcare.png', animation: 'Healthcare.gif' },
     { name: 'Mass Incarceration', to: 'mass-incarceration', img: 'mass-incarceration.png', animation: 'mass-incarceration.gif' },
     { name: 'Unions', to: 'unions', img: 'union.png', animation: 'union.gif' }
@@ -358,14 +358,14 @@ const Bg = styled.div`
 `
 
 const NavbarScroller = (props: { page?: string }) => {
-  const { links, blogs } = navigation
+  const { links, topics } = navigation
   const { page } = props
-  const DropdownLinks: any = () => blogs.map((link: {name: string, to: string}) =>
+  const DropdownLinks: any = () => topics.map((link: {name: string, to: string}) =>
       <li key={link.name}>
         <Link className='navbar shadow dropdown-item' href={link.to}>{link.name}</Link>
       </li>
   )
-  const DropdownMobileLinks: any = () => blogs.map((link: {name: string, to: string}) =>
+  const DropdownMobileLinks: any = () => topics.map((link: {name: string, to: string}) =>
       <li key={link.name}>
         <MobileLink href={link.to}>{link.name}</MobileLink>
       </li>
@@ -479,7 +479,7 @@ const NavbarScroller = (props: { page?: string }) => {
   handleNav()
 
   function makeLink (link: {name: string; to: string}, isMobile: boolean) {
-    if (link.name === 'Blogs') {
+    if (link.name === 'Topics') {
       if (isMobile) {
         return (
           <BlogListContainerMobile>

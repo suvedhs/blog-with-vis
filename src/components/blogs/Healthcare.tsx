@@ -393,6 +393,7 @@ function Healthcare () {
               <li>
                 the role American hospitals play in this
               </li>
+              <li>the role of the AMA in this</li>
               <li>Further analytics by State, by County</li>
               <li>TEXAS healthcare</li>
               <li>correlated stats on cancer, crime, education, etc</li>

@@ -76,9 +76,9 @@ const Li = styled.li`
   white-space: nowrap;
   `
 
-const BlogList = (props: {blogs: {name: string; to: string; img: string, animation: string}[] }) => {
-  const { blogs } = props
-  const Blogs: any = () => blogs.map((link: {name: string, to: string, img:string, animation: string }) =>
+const BlogList = (props: {topics: {name: string; to: string; img: string, animation: string}[] }) => {
+  const { topics } = props
+  const Blogs: any = () => topics.map((link: {name: string, to: string, img:string, animation: string }) =>
     <Li className='shadow point' key={link.name}>
         <BlogBox className='small rounded link' href={link.to}>
             <img className='static' src={require('../assets/' + link.img)} alt= {link.img + ' image'}></img>
@@ -90,7 +90,7 @@ const BlogList = (props: {blogs: {name: string; to: string; img: string, animati
 
   return (
     <Container id='blogs'>
-        <Head className='big'>My posts:</Head>
+        <Head className='big'>Topics:</Head>
         <Ul>
             <Blogs />
         </Ul>

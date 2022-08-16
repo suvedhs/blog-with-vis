@@ -5,7 +5,8 @@ import '../index.css'
 const Graph = styled.svg`
   z-index: 6;
   overflow: auto;
-  width: 100%;
+  width: auto;
+  margin-left: -10px;
 `
 
 const Green = styled.path`
@@ -33,7 +34,7 @@ const YaxisLabel = styled.text`
   font-family: 'Bitter', serif;
   font-size: 1.5em;
   transform: rotate(270deg);
-  z-index: 11;
+  z-index: 12;
 `
 
 const GraphLines = styled.svg`
@@ -50,6 +51,8 @@ const GraphLabels = styled.svg`
 
 const GraphWrapper = styled.div`
   transition: all 1s ease-in-out;
+  margin-top: -5px;
+  z-index: 11;
 
 `
 
@@ -114,7 +117,7 @@ const WealthGraph = (props: any) => {
 
   return (
       <GraphWrapper>
-        <Graph viewBox="0 0 1167 506" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Graph viewBox="0 0 1160 515" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0H1167V492.671H1098.69L1066.67 476.606L1034.65 500.704L998.354 476.606L969.891 457.863L938.581 423.054L906.56 414.129H873.115L840.382 426.624L713.72 340.05L680.987 332.017L646.831 353.438L588.481 335.587H547.921L482.455 300.779L455.415 275.789L421.97 266.863L389.237 270.433L356.504 219.56L296.02 199.032H258.305L199.244 151.728L165.088 135.663H129.509L97.4872 103.532L40.5604 36.5933L0 0Z" fill="#FC7A5B"/>
           <Green
             onMouseEnter={() => showMouseObj(true)}

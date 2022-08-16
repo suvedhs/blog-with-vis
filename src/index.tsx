@@ -18,7 +18,7 @@ const navigation = {
     { name: 'About', to: '/about' },
     { name: 'Contact', to: '#contact' }
   ],
-  blogs: [
+  topics: [
     { name: 'Healthcare', to: '/healthcare', img: 'healthcare.png', animation: 'Healthcare.gif' },
     { name: 'Mass Incarceration', to: 'mass-incarceration', img: 'mass-incarceration.png', animation: 'mass-incarceration.gif' },
     { name: 'Unions', to: 'unions', img: 'union.png', animation: 'union.gif' }
@@ -35,7 +35,7 @@ ReactDOM.render(
     <Container className='bg'>
       <Router>
         <Routes>
-          <Route path='/' element={<App blogs={navigation.blogs}/>} />
+          <Route path='/' element={<App topics={navigation.topics}/>} />
           <Route path='/about' element={<About />} />
           <Route path='/healthcare' element={<Healthcare />} />
           <Route path='/mass-incarceration' element={<MassIncarceration />} />
