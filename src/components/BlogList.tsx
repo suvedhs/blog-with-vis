@@ -15,21 +15,25 @@ const Container = styled.div`
 const TopicsWrapper = styled.div`
     top: 50vh;
     left: 50vw;
-    transform: translate(-50%, -50%);
 `
 
 const Head = styled.h2`
     text-align: center;
     font-family: Colombo;
-    font-size: 15vw;
+    font-size: 15em;
     font-weight: 300;
     letter-spacing: 3px;
     margin: 0;
+    will-change: font-size;
 `
 
 const SubHeader = styled.h3`
     text-align: center;
     font-weight: normal;
+    font-size: 2vw;
+    margin: 0;
+    padding: 0;
+    will-change: font-size;
 `
 
 // const BlogBox = styled.a`
@@ -106,36 +110,47 @@ const BlogList = (props: {topics: {name: string; to: string; img: string, animat
 
   const useEffectRef = useRef(false)
   const topicsRef = useRef<HTMLDivElement>(null)
+  const topicsWrapperRef = useRef<HTMLDivElement>(null)
   const headRef = useRef<HTMLHeadingElement>(null)
+  const subHeadRef = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
     if (useEffectRef.current) { return }
     window.addEventListener('scroll', () => {
       if (topicsRef.current) {
         const scrollPosition = topicsRef.current.getBoundingClientRect().top
-        // console.log(scrollPosition)
-        // console.log(window.innerHeight)
+        console.log(scrollPosition / (window.innerHeight * 4))
         const frozen = scrollPosition <= 0 && window.innerHeight * 4 + scrollPosition > 0
-        if (headRef.current) {
+        if (topicsWrapperRef.current && headRef.current && subHeadRef.current) {
           if (frozen) {
-            headRef.current.style.position = 'fixed'
-            headRef.current.style.width = '200%'
+            requestAnimationFrame(() => {
+              if (topicsWrapperRef.current && headRef.current && subHeadRef.current) {
+                topicsWrapperRef.current.style.position = 'fixed'
+                headRef.current.style.fontSize = Math.min(Math.max((scrollPosition * -1) / 5 + 15, 15), 350) + 'em'
+                subHeadRef.current.style.fontSize = Math.min(Math.max((scrollPosition * -1) / 50 + 2, 2), 6) + 'vw'
+
+                topicsWrapperRef.current.style.transform = 'translate(' + Math.min(Math.max(scrollPosition / -90 - 50, -50), -45) + '%, ' + Math.max(Math.min(scrollPosition / 100 - 50, -50), -57) + '%)'
+              }
+            })
           } else {
-            headRef.current.style.position = 'absolute'
+            topicsWrapperRef.current.style.position = 'absolute'
+            topicsWrapperRef.current.style.transform = 'translate(-50%, -50%)'
+            headRef.current.style.fontSize = '15em'
+            subHeadRef.current.style.fontSize = '2vw'
           }
         }
       }
     })
 
-    // useEffectRef.current = true
+    useEffectRef.current = true
   })
 
   return (
     <>
         <Container ref={topicsRef} id='blogs'>
-            <TopicsWrapper ref={headRef}>
-                <Head>Topics</Head>
-                <SubHeader className='small'>Hold on tight and check out my work.</SubHeader>
+            <TopicsWrapper ref={topicsWrapperRef}>
+                <Head ref={headRef}>Topics</Head>
+                <SubHeader ref={subHeadRef} className='small'>Hold on tight and check out my work.</SubHeader>
             </TopicsWrapper>
             {/* <Ul>
                 <Blogs />
